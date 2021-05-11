@@ -29,11 +29,6 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('products').dropTable('users').dropTable('orders').raw('drop extension if exists "uuid-ossp"');
-  // return Promise.all([
-  //     knex.schema.dropTable('products'),
-  //     knex.schema.dropTable('users'),
-  //     knex.schema.dropTable('orders'),
-  //     knex.raw('drop extension if exists "uuid-ossp"')
-  //   ]);
+  return knex.schema.dropTable('products').dropTable('users')
+    .dropTable('orders').raw('drop extension if exists "uuid-ossp"');
 };
