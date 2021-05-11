@@ -1,58 +1,60 @@
 <template>
-  <div id="app">
-    <Login v-if="this.$store.state.login === true"/>
-    <AccountCreation v-if="this.$store.state.accountCreation === true"/>
-    <Main v-if="this.$store.state.main === true"/>
-    <SideMenu v-if="this.$store.state.sideMenu === true"/>
-    <AccountInfo v-if="this.$store.state.accountInfo === true"/>
-    <ShoppingCart v-if="this.$store.state.shoppingCart === true"/>
-    <PurchaseHistory v-if="this.$store.state.purchaseHistory === true"/>
-    <MerchantDashboard v-if="this.$store.state.merchantDashboard === true"/>
-  </div >
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-
-import Login from './components/LoginPage.vue'
-import AccountCreation from './components/AccountCreation.vue'
-import Main from './components/Main.vue'
-import SideMenu from './components/SideMenu.vue'
-import AccountInfo from './components/AccountInfo.vue'
-import ShoppingCart from './components/ShoppingCart.vue'
-import PurchaseHistory from './components/PurchaseHistory.vue'
-import MerchantDashboard from './components/MerchantDashboard.vue'
-
+import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
-  components: {
-    Login,
-    AccountCreation,
-    Main,
-    SideMenu,
-    AccountInfo,
-    ShoppingCart,
-    PurchaseHistory,
-    MerchantDashboard
-  },
-  methods: {
-    myFunction(payload) {
-      this.$store.commit("blocking", payload);
-    },
-    asyncFunction(payload) {
-      this.$store.dispatch("nonBlocking", payload);
-    }
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
