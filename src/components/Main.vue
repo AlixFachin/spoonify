@@ -10,6 +10,15 @@
             <button @click="addToCart(item)">Add to cart</button>
         </div>
         <button id="scroll-up"></button>
+        <div class="text-center">
+    <v-btn
+      rounded
+      color="primary"
+      dark
+    >
+      Test Button
+    </v-btn>
+  </div>
     </div>
 </template>
 <script>

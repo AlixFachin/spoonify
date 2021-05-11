@@ -6,9 +6,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        displayLogin: true,
+        displayLogin: false,
         displayAccountCreation: false,
-        displayMain: false,
+        displayMain: true,
         displaySideMenu: false,
         displayAccountInfo: false,
         displayShoppingCart: false,
