@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.table('users', (t) => {
-      t.string('avatar');
+      t.string('avatar').defaultTo('');
       })
   };
   
