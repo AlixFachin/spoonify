@@ -95,7 +95,7 @@ app.post('/api/user', (request, responseHandler) => {
   });
 });
 
-app.post('api/order', (request, responseHandler) => {
+app.post('/api/order', (request, responseHandler) => {
   db('orders').insert(
     {
       userId: request.body.userId, 
