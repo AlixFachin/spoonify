@@ -86,28 +86,35 @@ app.get('/api/user/:id/orders', (request, responseHandler) => {
 });
 
 app.post('/api/user', (request, responseHandler) => {
-  db('users').insert(
-    { 
-      userName: request.body.userName, 
-      fullName: request.body.fullName, 
-      address: request.body.address, 
-      role: request.body.role 
-    }, 
-    ['id', 'userName', 'fullName', 'address', 'role']
-  ).then((dbData) => {
-    console.log(dbData);
-    if (request.body.userName === "") {
-      responseHandler.status(400).send("Please enter a username");
-    } else if (request.body.fullName ==="") {
-      responseHandler.status(400).send("Please enter a name");
-    } else if (request.body.address === "") {
-      responseHandler.status(400).send("Please enter an address");
-    } else {
-      responseHandler.status(200).send(dbData[0]);
-    }
-  }).catch((error) => {
-    responseHandler.status(500).send(`Server error ${error}`);
-  });
+  if (!request.body.userName || request.body.userName === "") {
+    responseHandler.status(400).send("Please enter a username");
+  } else if (!request.body.authId || request.body.authId === "") {
+    responseHandler.status(400).send("Please enter an authId");
+  } else {
+    db('users').where('authId',request.body.authId).then((dbData) => {
+      if (dbData.length === 0) {
+        db('users').insert(
+          { 
+            userName: request.body.userName, 
+            fullName: request.body.fullName, 
+            address: request.body.address, 
+            role: request.body.role,
+            authId: request.body.authId
+          }, 
+          ['id', 'userName', 'fullName', 'address', 'role', 'authId']
+        ).then((afterCreateData) => {
+          responseHandler.status(201).send(afterCreateData[0]);
+        }).catch((error) => {
+          responseHandler.status(500).send(`Server error ${error}`);
+        });
+      } else {
+        responseHandler.status(200).send(dbData[0]);
+      }
+    }).catch((error) => {
+          responseHandler.status(500).send(`Server error ${error}`);
+    });
+  }
+  
 });
 
 app.post('/api/order', (request, responseHandler) => {
