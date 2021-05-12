@@ -2,8 +2,6 @@ const express = require('express');
 const knexLib = require('knex');
 const knexConfig = require('../knexfile.js');
 const path = require('path');
-const e = require('express');
-const { response } = require('express');
 
 const db = knexLib( (process.env.NODE_ENV && process.env.NODE_ENV === 'production' ) ?  
   knexConfig.production : 
@@ -76,6 +74,7 @@ app.get('/api/user/:id/orders', (request, responseHandler) => {
 });
 
 app.post('/api/user', (request, responseHandler) => {
+<<<<<<< HEAD
   db('users').insert(
     { userName: request.body.userName, fullName: request.body.fullName, address: request.body.address }, 
     ['id', 'userName', 'fullName', 'address']
@@ -128,7 +127,28 @@ app.post('/api/order', (request, responseHandler) => {
   }).catch((error) => {
     responseHandler.status(500).send(`Server error ${error}`);
   });
+=======
+  console.log(request.body);
+  if (request.body.userName === "") {
+    responseHandler.status(400).send("Please enter a username");
+  } else if (request.body.fullName ==="") {
+    responseHandler.status(400).send("Please enter a name");
+  } else if (request.body.address === "") {
+    responseHandler.status(400).send("Please enter an address");
+  } else { db('users').insert(
+    { userName: request.body.userName, fullName: request.body.fullName, address: request.body.address },
+    ['id', 'userName', 'fullName', 'address']
+  ).then((dbData) => {
+      console.log(dbData);
+      responseHandler.status(200).send(dbData[0]);
+    }).catch((error) => {
+      responseHandler.status(500).send(`Server error ${error}`);
+    });
+  }
+>>>>>>> e077540785b61386f751c6a8c4ea27b42e936748
 });
+
+app.post
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);

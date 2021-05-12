@@ -1,5 +1,6 @@
 <template>
     <div id="main-container">
+        <h1> I'm MAIN </h1>
         <div class="purchasable-item" v-for="item in this.$store.state.itemList" :key="item.id">
             <img src />
             <h3>{{item.name}}</h3>
