@@ -75,8 +75,41 @@ exports.seed = function(knex) {
             address: "645 Main St, Apt D",
             role: "user"
           }
-        ]);
-      });
-    });
-  });
+          ]).then(() => {
+            return knex('orders').del()
+            .then(function () {
+              return knex('orders').insert([
+              {
+                // userId: "3958d206-5d84-4c35-b1f1-84fec28b794c",
+                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                deliveryFee: "123",
+                tip: "123",
+                totalPrice: "6500",
+                status: "pending",
+                timestamp: "2016-06-22 19:10:25+09"
+              },
+              {
+                // userId: "3567d206-5d84-4c35-b1f1-84fec28b789d",
+                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                deliveryFee: "123",
+                tip: "123",
+                totalPrice: "2300",
+                status: "complete",
+                timestamp: "2076-07-22 21:10:25+09"
+              },
+              {
+                // userId: "3878d206-5d84-4c35-b1f1-84fec28b798b",
+                items: [{product: "burger", quantity: 7}, {product: "brownie", quantity: 10}],
+                deliveryFee: "123",
+                tip: "123",
+                totalPrice: "23450",
+                status: "pending",
+                timestamp: "2056-06-22 19:24:25+09"
+              }
+          ]);
+         });
+       });
+     });
+   });
+ });
 };

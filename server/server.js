@@ -75,8 +75,13 @@ app.get('/api/user/:id/orders', (request, responseHandler) => {
 
 app.post('/api/user', (request, responseHandler) => {
   db('users').insert(
-    { userName: request.body.userName, fullName: request.body.fullName, address: request.body.address }, 
-    ['id', 'userName', 'fullName', 'address']
+    { 
+      userName: request.body.userName, 
+      fullName: request.body.fullName, 
+      address: request.body.address, 
+      role: request.body.role 
+    }, 
+    ['id', 'userName', 'fullName', 'address', 'role']
   ).then((dbData) => {
     console.log(dbData);
     if (request.body.userName === "") {
