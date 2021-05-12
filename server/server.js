@@ -96,16 +96,18 @@ app.post('/api/user', (request, responseHandler) => {
 app.post('/api/order', (request, responseHandler) => {
   db('orders').insert(
     {
-      userId: request.body.userId, 
-      items: request.body.items, 
-      deliveryFee: request.body.deliveryFee,
-      tip: request.body.tip,
-      totalPrice: request.body.totalPrice,
+      // userId: request.body.userId, 
+      // items: request.body.items, 
+      // deliveryFee: request.body.deliveryFee,
+      // tip: request.body.tip,
+      // totalPrice: request.body.totalPrice,
       status: request.body.status,
-      timestamp: request.body.timestamp
+      // to fix, make sure it matches database timestamp structure knex uses Timestamp TZ
+      // timestamp: new Date()
     },
     ['id', 'userId', 'items', 'deliveryFee', 'tip', 'totalPrice', 'status', 'timestamp']
   ).then((dbData) => {
+    console.log(dbData);
     if (request.body.userId === "") {
       responseHandler.status(400).send("User ID required");
     } else if (request.body.items ==="") {
@@ -128,10 +130,16 @@ app.post('/api/order', (request, responseHandler) => {
   });
 });
 
-app.post
+app.patch('/api/order/:id'), (request, responseHandler) => {
+  newStatus = request.body.status;
+  db('orders').update({
+    status: newStatus,
+    thisKeyIsSkipped: undefined
+  }).then((dbData) => {
+    responseHandler.status(200).end();
+  });
+}
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);
 })
-
-
