@@ -1,5 +1,5 @@
-<template >
-    <div id="purchase-history-container">
+}<template >
+    <div id="account-creation-container">
     </div>
 </template>
 
@@ -8,10 +8,6 @@ export default {
     name: 'PurchaseHistory',
     methods: {
     }
-}<template >
-    <div id="account-creation-container">
-    </div>
-</template>
 
 
 <script>
