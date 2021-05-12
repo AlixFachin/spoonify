@@ -9,11 +9,13 @@ export default new Vuex.Store({
         displayPage: 'Main',
         loggedIn: true,
         userID: "",
+        userRole: "guest",
         itemList: [],
         shoppingCartList: [],
         orderList: [],
-        userDetails: []
-    },
+        userDetails: [],
+        
+    }, 
 
     mutations: {
         addToCart(state, payload){
@@ -42,7 +44,6 @@ export default new Vuex.Store({
             console.log("User details from fetch", state.userDetails)
         },
         openAccountInfo(state) {
-            console.log('im in store.js')
             state.displayPage = 'AccountInfo';
         },
         openMain(state) {
@@ -75,6 +76,7 @@ export default new Vuex.Store({
         },
         async fetchUserDetails( state, {commit } ) {
             try {
+                console.log("user ID", state.userID)
                 const fetchedUser = await axios.get(`/api/user/${state.userID}`)
                 commit("setUserDetails", fetchedUser.data)
             } catch (err) {

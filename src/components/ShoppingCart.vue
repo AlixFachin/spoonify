@@ -19,7 +19,7 @@
     </v-list-item-content>
     <v-spacer></v-spacer>
     <v-list-item-content>
-        <v-list-item-title class="mb-2">¥{{item.price}} x {{item.quantity}}</v-list-item-title>
+        <v-list-item-title class="mb-2">¥{{item.price}}</v-list-item-title>
         <v-list-item-subtitle></v-list-item-subtitle>
     </v-list-item-content>
     </v-list-item>
@@ -30,9 +30,12 @@
      mode="payment"
      :pk="publishableKey"
      :line-items="lineItems"
-
       />
      <button @click="submit">Pay Now!</button>
+     <v-spacer></v-spacer>
+     <div>
+     ¥{{total}}
+     </div>
     </v-bottom-navigation>
     </div>
 </template>
@@ -56,25 +59,27 @@ export default {
     this.$refs.checkoutRef.redirectToCheckout();
     // console.log(this.items)
     },
-        // getTotal(){
-        //     this.$store.state.shoppingCartList.map((element) => {
-        //         this.total += (element.quantity x element.price)
-        //     })
-        // }
+        getTotal(){
+            this.$store.state.shoppingCartList.map((element) => {
+                this.total += element.quantity * element.price
+            })
+        },
+        createLineItem(){
+            this.$store.state.shoppingCartList.map((element) => {
+                this.lineItems.push({price: element.key, quantity: element.quantity})
+            })
+        }
     },
     data() {
         return {
             total: 0,
             publishableKey: process.env.VUE_APP_PK,
-            lineItems: [{
-                price: 'price_1Iq9q3IjEoyBXRG761GloPF1', // The id of the one-time price you created in your Stripe dashboard
-                quantity: 1,
-                },
-                
-                ],
+            lineItems: [],
         }
     },
     mounted() {
+        this.getTotal()
+        this.createLineItem()
         console.log(process.env.DB_NAME)
     }
 } 

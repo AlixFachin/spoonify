@@ -79,7 +79,7 @@ export default {
 </script>
 <style scoped>
 #scroll-up {
-    background: url("../assets/logo.png");
+    background: url("../assets/up-arrow.png");
 }
     
 </style>
