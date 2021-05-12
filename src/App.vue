@@ -104,7 +104,7 @@ export default {
      }),
   methods: {
     openAccountInfo() {
-      console.log("I have been clicked")
+      
       this.$store.commit("openAccountInfo");
       this.drawer = null
     },

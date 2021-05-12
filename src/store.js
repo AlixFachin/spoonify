@@ -42,6 +42,7 @@ export default new Vuex.Store({
             console.log("User details from fetch", state.userDetails)
         },
         openAccountInfo(state) {
+            console.log('im in store.js')
             state.displayPage = 'AccountInfo';
         },
         openMain(state) {
