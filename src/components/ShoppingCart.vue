@@ -3,8 +3,10 @@
     <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
     <v-list-item two-line>
         <v-list-item-avatar
+        class="fill-height grey"
         tile
         left
+        max-height="50"
         size="20%"
         color="grey">
         <v-img color='grey' class="fill-height grey"
@@ -15,18 +17,67 @@
         <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
         <v-list-item-subtitle>quantity:{{item.quantity}}</v-list-item-subtitle>
     </v-list-item-content>
+    <v-spacer></v-spacer>
+    <v-list-item-content>
+        <v-list-item-title class="mb-2">¥{{item.price}} x {{item.quantity}}</v-list-item-title>
+        <v-list-item-subtitle></v-list-item-subtitle>
+    </v-list-item-content>
     </v-list-item>
     </v-card>
+    <v-bottom-navigation>
+     <StripeCheckout
+     ref="checkoutRef"
+     mode="payment"
+     :pk="publishableKey"
+     :line-items="lineItems"
+
+      />
+     <button @click="submit">Pay Now!</button>
+    </v-bottom-navigation>
     </div>
 </template>
 
 
 <script>
+import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 export default {
+    
     name: 'ShoppingCart',
+    components: {
+        StripeCheckout
+    },
     methods: {
+        submit () {
+    // this.items = this.$store.state.shoppingCartList
+    this.$refs.checkoutRef.redirectToCheckout();
+    // console.log(this.items)
+    },
+        // getTotal(){
+        //     this.$store.state.shoppingCartList.map((element) => {
+        //         this.total += (element.quantity x element.price)
+        //     })
+        // }
+    },
+    data() {
+        return {
+            total: 0,
+            publishableKey: process.env.VUE_APP_PK,
+            lineItems: [{
+                price: 'price_1Iq9q3IjEoyBXRG761GloPF1', // The id of the one-time price you created in your Stripe dashboard
+                quantity: 1,
+                },
+                
+                ],
+        }
+    },
+    mounted() {
+        console.log(process.env.DB_NAME)
     }
-}
+} 
 </script>
 
 

@@ -1,7 +1,7 @@
 <template >
     <div id="account-info-container">
-        <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
-    <v-list-item three-line @click="setSelectedIndex(item.id)">
+        <v-card v-for="userdetails in this.$store.state.userDetails" :key="userdetails.id">
+    <v-list-item three-line >
         <v-list-item-avatar
         tile
         left

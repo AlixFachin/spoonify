@@ -12,15 +12,22 @@ export default new Vuex.Store({
         itemList: [],
         shoppingCartList: [],
         orderList: [],
+        userDetails: []
     },
 
     mutations: {
         addToCart(state, payload){
-            console.log('added', payload.name)
+        let checkExist = state.shoppingCartList.find((item) => item.id === payload.id)
+        if(checkExist){
+            let cartIndex = state.shoppingCartList.indexOf(checkExist)
+            state.shoppingCartList[cartIndex].quantity += 1
+        } else {
+            payload.quantity = 1
             state.shoppingCartList.push(payload)
+        }
         },
 
-        clearCart(state){
+        clearCart(state) {
             state.shoppingCartList = []
         },
         setItemList(state, fetchedData) {
@@ -30,8 +37,12 @@ export default new Vuex.Store({
             state.orderList = fetchedData
             console.log(state.orderList)
         },
+        setUserDetails(state, fetchedData) {
+            state.userDetails = fetchedData
+            console.log("User details from fetch", state.userDetails)
+        },
         openAccountInfo(state) {
-            state.displayPage = "AccountInfo";
+            state.displayPage = 'AccountInfo';
         },
         openMain(state) {
             state.displayPage = 'Main';
@@ -59,6 +70,14 @@ export default new Vuex.Store({
                 commit("setOrderList", fetchedOrders.data)
             } catch (err) {
                 console.log('Failed fetching order list', err)
+            }
+        },
+        async fetchUserDetails( state, {commit } ) {
+            try {
+                const fetchedUser = await axios.get(`/api/user/${state.userID}`)
+                commit("setUserDetails", fetchedUser.data)
+            } catch (err) {
+                console.log('Failed fetching user details', err)
         }}
     }
 

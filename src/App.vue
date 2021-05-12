@@ -104,16 +104,21 @@ export default {
      }),
   methods: {
     openAccountInfo() {
+      console.log("I have been clicked")
       this.$store.commit("openAccountInfo");
+      this.drawer = null
     },
     openPurchaseHistory() {
       this.$store.commit("openPurchaseHistory");
+      this.drawer = null
     },
     openShoppingCart() {
       this.$store.commit("openShoppingCart");
+      this.drawer = null
     },
     openMain() {
       this.$store.commit("openMain");
+      this.drawer = null
     }
   }
 }

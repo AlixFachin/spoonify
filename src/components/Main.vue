@@ -6,6 +6,7 @@
         <v-list-item-avatar
         tile
         left
+        max-height="50"
         size="20%"
         color="grey">
         <v-img color='grey' class="fill-height grey"
