@@ -24,6 +24,18 @@ app.get('/api/products', (request, responseHandler) => {
   });
 });
 
+// TO REMOVE FOR PRODUCTION
+app.get('/api/usersTest', (request, responseHandler) => {
+  console.log("inside API endpoint")
+  db('users').select('*').then((dbData) => {
+    console.log(dbData);
+    responseHandler.status(200).send(dbData);
+  }).catch((error) => {
+    console.error(error);
+    responseHandler.status(500).send(`Server error ${error}`);
+  });
+});
+
 app.get('/api/product/:id', (request, responseHandler) => {
   db('products').select('*').where('id',request.params.id).then((dbData) => {
     if (dbData.length === 0) {

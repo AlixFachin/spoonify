@@ -1,7 +1,7 @@
 <template >
     <div id="account-info-container">
     <v-card>
-        <h1> {{getOneUser}} </h1>
+        <h1> {{getOneUser.userName}} </h1>
     <h1>Hello, I'm here</h1>
     </v-card>
    
@@ -13,19 +13,19 @@
 export default {
     name: 'AccountInfo',
     methods: {
-           getOneUser() {
-            console.log("Computed has run")
-            console.log("I am all users", this.$store.state.allUsers)
-            return this.$store.state.allUsers;
-        }
+           
     },
     mounted() {
         this.$store.dispatch("fetchAllUsers");
-        console.log("I ran");
+        console.log("inside acc info");
         
     },
     computed: {
-    
+        getOneUser() {
+            console.log("Computed has run")
+            console.log("I am all users", this.$store.state.allUsers[0])
+            return this.$store.state.allUsers[0];
+        }
     }
 }
 </script>
