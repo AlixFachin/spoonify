@@ -3,10 +3,12 @@
     </div>
 </template>
 
-
 <script>
+
 export default {
     name: 'AccountCreation',
     methods: {
     }
 }
+
+</script>

@@ -46,7 +46,7 @@ export default new Vuex.Store({
         },
         setAllUsers(state, fetchedData) {
             state.allUsers = fetchedData
-            console.log("All Userss from fetch", state.userDetails)
+            console.log("All Users from fetch", state.allUsers)
         },
         openAccountInfo(state) {
             state.displayPage = 'AccountInfo';
@@ -89,16 +89,16 @@ export default new Vuex.Store({
                 commit("setUserDetails", fetchedUser.data)
             } catch (err) {
                 console.log('Failed fetching user details', err)
-        }},
-        async fetchAllUsers( state, { commit } ) {
+            }
+        },
+        async fetchAllUsers({ commit }) {
+            console.log('inside store function')
             try {
-                const fetchedUsers = await axios.get(`/api/usersTest`)
-                console.log(fetchedUsers.data)
+                const fetchedUsers = await axios.get('/api/usersTest')
                 commit("setAllUsers", fetchedUsers.data)
             } catch (err) {
                 console.log('Failed fetching all users', err)
-        }}
+            }
+        }
     }
-
-
 })
