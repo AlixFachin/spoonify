@@ -1,12 +1,18 @@
 const express = require('express');
 const knexLib = require('knex');
 const knexConfig = require('../knexfile.js');
+const path = require('path');
 
 const db = knexLib( (process.env.NODE_ENV && process.env.NODE_ENV === 'production' ) ?  
   knexConfig.production : 
   knexConfig.development);
 
 const app = express();
+
+// Static files for front-end
+app.use('/',express.static(path.join(__dirname,'../dist')));
+console.log(path.join(__dirname,'../dist'));
+// Endpoints
 
 app.get('/api/products', (request, responseHandler) => {
   db('products').select('*').then((dbData) => {
@@ -33,3 +39,5 @@ app.get('/api/product/:id', (request, responseHandler) => {
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);
 })
+
+
