@@ -1,5 +1,5 @@
 <template >
-    <div>
+    <div v-if="this.$store.state.shoppingCartList.length > 0">
     <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
     <v-list-item two-line>
         <v-list-item-avatar
@@ -37,6 +37,9 @@
      ¥{{total}}
      </div>
     </v-bottom-navigation>
+    </div>
+    <div v-else>
+        <p> You have no item in your cart.. </p>
     </div>
 </template>
 

@@ -14,6 +14,7 @@ export default new Vuex.Store({
         shoppingCartList: [],
         orderList: [],
         userDetails: [],
+        allUsers: []
         
     }, 
 
@@ -43,6 +44,10 @@ export default new Vuex.Store({
             state.userDetails = fetchedData
             console.log("User details from fetch", state.userDetails)
         },
+        setAllUsers(state, fetchedData) {
+            state.allUsers = fetchedData
+            console.log("All Userss from fetch", state.userDetails)
+        },
         openAccountInfo(state) {
             state.displayPage = 'AccountInfo';
         },
@@ -54,6 +59,9 @@ export default new Vuex.Store({
         },
         openPurchaseHistory(state) {
             state.displayPage = 'PurchaseHistory'
+        },
+        openMerchantDashboard(state) {
+            state.displayPage = 'MerchantDashboard'
         }
     },
 
@@ -74,13 +82,21 @@ export default new Vuex.Store({
                 console.log('Failed fetching order list', err)
             }
         },
-        async fetchUserDetails( state, {commit } ) {
+        async fetchUserDetails( state, { commit } ) {
             try {
                 console.log("user ID", state.userID)
                 const fetchedUser = await axios.get(`/api/user/${state.userID}`)
                 commit("setUserDetails", fetchedUser.data)
             } catch (err) {
                 console.log('Failed fetching user details', err)
+        }},
+        async fetchAllUsers( state, { commit } ) {
+            try {
+                const fetchedUsers = await axios.get(`/api/usersTest`)
+                console.log(fetchedUsers.data)
+                commit("setAllUsers", fetchedUsers.data)
+            } catch (err) {
+                console.log('Failed fetching all users', err)
         }}
     }
 

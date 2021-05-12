@@ -28,6 +28,16 @@ app.get('/api/products', (request, responseHandler) => {
   });
 });
 
+app.get('/api/usersTest', (request, responseHandler) => {
+  db('users').select('*').then((dbData) => {
+    console.log(dbData);
+    responseHandler.status(200).send(dbData);
+  }).catch((error) => {
+    console.error(error);
+    responseHandler.status(500).send(`Server error ${error}`);
+  });
+});
+
 app.get('/api/product/:id', (request, responseHandler) => {
   console.log(request.params);
   db('products').select('*').where('id',request.params.id).then((dbData) => {
