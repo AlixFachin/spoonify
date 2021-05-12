@@ -96,14 +96,14 @@ app.post('/api/user', (request, responseHandler) => {
 app.post('/api/order', (request, responseHandler) => {
   db('orders').insert(
     {
-      // userId: request.body.userId, 
-      // items: request.body.items, 
-      // deliveryFee: request.body.deliveryFee,
-      // tip: request.body.tip,
-      // totalPrice: request.body.totalPrice,
+      userId: request.body.userId, 
+      items: request.body.items, 
+      deliveryFee: request.body.deliveryFee,
+      tip: request.body.tip,
+      totalPrice: request.body.totalPrice,
       status: request.body.status,
       // to fix, make sure it matches database timestamp structure knex uses Timestamp TZ
-      // timestamp: new Date()
+      timestamp: new Date()
     },
     ['id', 'userId', 'items', 'deliveryFee', 'tip', 'totalPrice', 'status', 'timestamp']
   ).then((dbData) => {
