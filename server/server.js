@@ -105,9 +105,30 @@ app.post('api/order', (request, responseHandler) => {
       totalPrice: request.body.totalPrice,
       status: request.body.status,
       timestamp: request.body.timestamp
+    },
+    ['id', 'userId', 'items', 'deliveryFee', 'tip', 'totalPrice', 'status', 'timestamp']
+  ).then((dbData) => {
+    if (request.body.userId === "") {
+      responseHandler.status(400).send("User ID required");
+    } else if (request.body.items ==="") {
+      responseHandler.status(400).send("Order items required");
+    } else if (request.body.deliveryFee === "") {
+      responseHandler.status(400).send("Delivery fee required");
+    } else if (request.body.tip === "") {
+      responseHandler.status(400).send("Tip required");
+    } else if (request.body.totalPrice === "") {
+      responseHandler.status(400).send("Total price required");
+    } else if (request.body.status === "") {
+      responseHandler.status(400).send("Order status required");
+    } else if (request.body.timestamp === "") {
+      responseHandler.status(400).send("Order timestamp required");
+    } else {
+      responseHandler.status(200).send(dbData[0]);
     }
-  )
-})
+  }).catch((error) => {
+    responseHandler.status(500).send(`Server error ${error}`);
+  });
+});
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);
