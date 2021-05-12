@@ -5,51 +5,51 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('products').insert([
         {
-          name: "burger", 
+          name: "Burger", 
           price: 2500 , 
-          description: "tasty burger made with Kobe beef and pineapple and teriyaki sauce", 
+          description: "A tasty burger made with Kobe beef and pineapple and teriyaki sauce", 
           image_filepath: "../src/assets/190524-classic-american-cheeseburger-ew-207p-2870431.jpg",
           product_id: "prod_JT7OrX5ZX6B512"
         },
         {
-          name: "chicken sandwich", 
+          name: "Chicken Sandwich", 
           price: 2200 , 
-          description: "served with lettuce, onion, pickle, and drizzled in our original sauce", 
+          description: "Served with lettuce, onion, pickle, and drizzled in our original sauce", 
           image_filepath: "../src/assets/",
           product_id: "prod_JT7QrYJ16rASCa"
         },
         {
-          name: "jam", 
+          name: "Jam", 
           price: 900 , 
-          description: "hand-made jam with local fruits produced by dedicated artisan", 
+          description: "Our hand-made jam made with local fruits produced by our dedicated artisan", 
           image_filepath: "../src/assets/burger-sauce-fb-ig-5-scaled.jpg",
           product_id: "prod_JT7QqW1uqY97DX"
         },
         {
-          name: "pickles", 
+          name: "Pickles", 
           price: 1200 , 
           description: "Fermented pickles with vinegar imported from Italy", 
           image_filepath: "../src/assets/dill-pickles-14132-1.jpg",
           product_id: "prod_JT7RjgMiHRrlpg"
         },
         {
-          name: "french fries", 
+          name: "French Fries", 
           price: 500 , 
-          description: "made fresh daily, salted with sea salt", 
+          description: "Made fresh daily, salted with sea salt", 
           image_filepath: "../src/assets/",
           product_id: "prod_JT7SceE9y37dSO"
         },
         {
-          name: "curly fries", 
+          name: "Curly Fries", 
           price: 600 , 
-          description: "made fresh daily, seasoned with our original seasoning", 
+          description: "Made fresh daily, seasoned with our original seasoning", 
           image_filepath: "../src/assets/",
           product_id: "prod_JT7SQ0hLVieiJl"
         },
         {
-          name: "brownie", 
+          name: "Brownie", 
           price: 500 , 
-          description: "delicious homemade fudge brownies", 
+          description: "Delicious homemade fudge brownies", 
           image_filepath: "../src/assets/",
           product_id: "prod_JT7TyzN2nOWaNr"
         }

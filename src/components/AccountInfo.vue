@@ -2,6 +2,8 @@
     <div id="account-info-container">
     <v-card>
         <h1> {{getOneUser.userName}} </h1>
+        <h2> {{getOneUser.fullName}} </h2>
+        <h2> {{getOneUser.address}} </h2>
     <h1>Hello, I'm here</h1>
     </v-card>
    
