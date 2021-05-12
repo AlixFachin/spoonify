@@ -1,12 +1,11 @@
 <template >
-    <div id="side-menu-container">
+    <div id="purchase-history-container">
     </div>
 </template>
 
-
 <script>
 export default {
-    name: 'SideMenu',
+    name: 'PurchaseHistory',
     methods: {
     }
 }

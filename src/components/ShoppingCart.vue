@@ -1,5 +1,5 @@
 <template >
-    <div id="cart-container">
+    <div id="shopping-cart-container">
         <ol id="order-list">
             <div v-for="item in this.$store.state.shoppingCartList" :key="item.id">
             </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: 'LoginPage',
+    name: 'ShoppingCart',
     methods: {
         login(){
             // this.$store. ("");
