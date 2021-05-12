@@ -1,6 +1,6 @@
  
 <template>
-  <v-app id="spoonify">
+<v-app id="spoonify">
      <v-navigation-drawer
         permanent
         expand-on-hover
@@ -27,31 +27,32 @@
         <v-divider></v-divider>
 
         <v-list
+        v-if="this.$store.state.loggedIn === true"
           nav
           dense
         >
-          <v-list-item link>
+          <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>
               <v-icon
               color="teal darken-2">mdi-account-circle</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Account Info</v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="testfunction">
+          <v-list-item link @click="openPurchaseHistory">
             <v-list-item-icon>
               <v-icon
               color="red darken-2">mdi-credit-card</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Purchase History</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="openShoppingCart">
             <v-list-item-icon>
               <v-icon
               color="purple darken-2">mdi-cart</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Shopping Cart</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="openMain">
             <v-list-item-icon>
               <v-icon
               color="yellow darken-2">mdi-basket</v-icon>
@@ -60,34 +61,77 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
+    
 
     <v-app-bar class="lightgrey" app>
       <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
-    
       <v-toolbar-title class="font-weight-black" center>Spoonify</v-toolbar-title>
     </v-app-bar>
-
     <v-main>
-      <PurchaseHistory />
-      <!--  -->
+      <Login v-if="this.$store.state.displayPage === 'Login'"/>
+      <AccountCreation v-if="this.$store.state.displayPage === 'AccountCreation'"/>
+      <Main v-if="this.$store.state.displayPage === 'Main'"/>
+      <AccountInfo v-if="this.$store.state.displayPage === 'AccountInfo'"/>
+      <ShoppingCart v-if="this.$store.state.displayPage === 'ShoppingCart'"/>
+      <PurchaseHistory v-if="this.$store.state.displayPage === 'PurchaseHistory'"/>
+      <MerchantDashboard v-if="this.$store.state.displayPage === 'MerchantDashboard'"/>
     </v-main>
   </v-app>
 </template>
 
-<script>
-import PurchaseHistory from './components/PurchaseHistory'
 
-  export default {
-    components:{
-      PurchaseHistory
-    },
-    data: () => ({ 
+<script>
+import Login from './components/LoginPage.vue'
+import AccountCreation from './components/AccountCreation.vue'
+import Main from './components/Main.vue'
+import AccountInfo from './components/AccountInfo.vue'
+import ShoppingCart from './components/ShoppingCart.vue'
+import PurchaseHistory from './components/PurchaseHistory.vue'
+import MerchantDashboard from './components/MerchantDashboard.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Login,
+    AccountCreation,
+    Main,
+    AccountInfo,
+    ShoppingCart,
+    PurchaseHistory,
+    MerchantDashboard
+  },
+  data: () => ({ 
       drawer: null,
      }),
-    methods: {
-      testfunction(){
-        console.log('test')
-      }
+  methods: {
+    openAccountInfo() {
+      
+      this.$store.commit("openAccountInfo");
+      this.drawer = null
     },
+    openPurchaseHistory() {
+      this.$store.commit("openPurchaseHistory");
+      this.drawer = null
+    },
+    openShoppingCart() {
+      this.$store.commit("openShoppingCart");
+      this.drawer = null
+    },
+    openMain() {
+      this.$store.commit("openMain");
+      this.drawer = null
+    }
   }
+}
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
