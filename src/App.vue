@@ -101,8 +101,6 @@
 
 
 <script>
-import Login from './components/LoginPage.vue'
-import AccountCreation from './components/AccountCreation.vue'
 import Main from './components/Main.vue'
 import AccountInfo from './components/AccountInfo.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
@@ -114,8 +112,6 @@ import LogoutButton from './components/LogoutButton.vue'
 export default {
   name: 'App',
   components: {
-    Login,
-    AccountCreation,
     Main,
     AccountInfo,
     ShoppingCart,

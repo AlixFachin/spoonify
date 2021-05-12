@@ -31,11 +31,9 @@
      :pk="publishableKey"
      :line-items="lineItems"
       />
-     <button @click="submit">Pay Now!</button>
+     <v-button class="ml-5" color="blue white--text" @click="submit">Pay Now!</v-button>
      <v-spacer></v-spacer>
-     <div>
      ¥{{total}}
-     </div>
     </v-bottom-navigation>
     </div>
     <div v-else>

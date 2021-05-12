@@ -76,7 +76,7 @@ export default new Vuex.Store({
         },
         async fetchUserOrders( state, {commit } ) {
             try {
-                const fetchedOrders = await axios.get(`/api/user/${state.userID}/orders`)
+                const fetchedOrders = await axios.get(`/api/user/${this.$auth.user.sub}/orders`)
                 commit("setOrderList", fetchedOrders.data)
             } catch (err) {
                 console.log('Failed fetching order list', err)
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         async fetchUserDetails( state, { commit } ) {
             try {
                 console.log("user ID", state.userID)
-                const fetchedUser = await axios.get(`/api/user/${state.userID}`)
+                const fetchedUser = await axios.get(`/api/user/${this.$auth.user.sub}`)
                 commit("setUserDetails", fetchedUser.data)
             } catch (err) {
                 console.log('Failed fetching user details', err)
