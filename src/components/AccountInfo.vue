@@ -1,22 +1,10 @@
 <template >
     <div id="account-info-container">
-        <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
-    <v-list-item three-line @click="setSelectedIndex(item.id)">
-        <v-list-item-avatar
-        tile
-        left
-        size="20%"
-        color="grey">
-        <v-img color='grey' class="fill-height grey"
-            :src="require(`@/assets/${item.name}.jpg`)"
-            ></v-img>
-        </v-list-item-avatar>
-    <v-list-item-content>
-        <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
-        <v-list-item-subtitle>¥{{item.price}}</v-list-item-subtitle>
-    </v-list-item-content>
-    </v-list-item>
+    <v-card>
+        <h1> {{getOneUser.userName}} </h1>
+    <h1>Hello, I'm here</h1>
     </v-card>
+   
     </div>
 </template>
 
@@ -25,5 +13,19 @@
 export default {
     name: 'AccountInfo',
     methods: {
+           
+    },
+    mounted() {
+        this.$store.dispatch("fetchAllUsers");
+        console.log("inside acc info");
+        
+    },
+    computed: {
+        getOneUser() {
+            console.log("Computed has run")
+            console.log("I am all users", this.$store.state.allUsers[0])
+            return this.$store.state.allUsers[0];
+        }
     }
 }
+</script>
