@@ -24,6 +24,7 @@ app.get('/api/products', (request, responseHandler) => {
 });
 
 app.get('/api/product/:id', (request, responseHandler) => {
+  console.log(request.params);
   db('products').select('*').where('id',request.params.id).then((dbData) => {
     if (dbData.length === 0) {
       responseHandler.status(404).send(`Cannot find id ${request.params.id} in the DB`);
@@ -34,6 +35,16 @@ app.get('/api/product/:id', (request, responseHandler) => {
     console.error(error);
     responseHandler.status(500).send(`Server error ${error}`);
   })
+});
+
+app.get('api/user/:id', (request, respsonseHandler) => {
+  db('users').select('*').where('id', request.params.id).then((dbData) => {
+    if (dbData.length === 0) {
+      responseHandler.status(404).send(`Cannot find user with id ${request.params.user} in the DB`);
+    } else {
+      responseHandler.status(200).send(dbData[0]);
+    }
+  });
 });
 
 app.listen(process.env.PORT || 4000, () => {
