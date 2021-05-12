@@ -15,12 +15,10 @@ app.use(express.json());
 
 // Static files for front-end
 app.use('/',express.static(path.join(__dirname,'../dist')));
-console.log(path.join(__dirname,'../dist'));
 
 // Endpoints
 app.get('/api/products', (request, responseHandler) => {
   db('products').select('*').then((dbData) => {
-    console.log(dbData);
     responseHandler.status(200).send(dbData);
   }).catch((error) => {
     console.error(error);
@@ -29,7 +27,6 @@ app.get('/api/products', (request, responseHandler) => {
 });
 
 app.get('/api/product/:id', (request, responseHandler) => {
-  console.log(request.params);
   db('products').select('*').where('id',request.params.id).then((dbData) => {
     if (dbData.length === 0) {
       responseHandler.status(404).send(`Cannot find id ${request.params.id} in the DB`);
@@ -79,10 +76,11 @@ app.get('/api/user/:id/orders', (request, responseHandler) => {
 });
 
 app.post('/api/user', (request, responseHandler) => {
-  console.log(request.body);
   db('users').insert(
-    { userName: request.body.userName, fullName: request.body.fullName, address: request.body.address },
+    { userName: request.body.userName, fullName: request.body.fullName, address: request.body.address }, 
+    ['id', 'userName', 'fullName', 'address']
   ).then((dbData) => {
+    console.log(dbData);
     if (request.body.userName === "") {
       responseHandler.status(400).send("Please enter a username");
     } else if (request.body.fullName ==="") {
@@ -90,12 +88,26 @@ app.post('/api/user', (request, responseHandler) => {
     } else if (request.body.address === "") {
       responseHandler.status(400).send("Please enter an address");
     } else {
-      responseHandler.status(200).send(response.body);
+      responseHandler.status(200).send(dbData[0]);
     }
   }).catch((error) => {
     responseHandler.status(500).send(`Server error ${error}`);
   });
 });
+
+app.post('api/order', (request, responseHandler) => {
+  db('orders').insert(
+    {
+      userId: request.body.userId, 
+      items: request.body.items, 
+      deliveryFee: request.body.deliveryFee,
+      tip: request.body.tip,
+      totalPrice: request.body.totalPrice,
+      status: request.body.status,
+      timestamp: request.body.timestamp
+    }
+  )
+})
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);
