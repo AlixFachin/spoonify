@@ -4,15 +4,11 @@
 </template>
 
 <script>
-export default {
-    name: 'PurchaseHistory',
-    methods: {
-    }
 
-
-<script>
 export default {
     name: 'AccountCreation',
     methods: {
     }
 }
+
+</script>
