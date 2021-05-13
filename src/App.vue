@@ -10,8 +10,7 @@
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar color="grey">
-              <v-img color="grey" src="this.$auth.user.picture"></v-img>
-              // 
+              <v-img color="grey" :src="$auth.user.picture"></v-img>
             </v-list-item-avatar>
           </v-list-item>
 
@@ -53,26 +52,36 @@
           </v-list-item>
           <v-list-item link @click="openPurchaseHistory">
             <v-list-item-icon>
-              <v-icon
+        <v-icon
               color="red darken-2">mdi-credit-card</v-icon>
             </v-list-item-icon>
+              
             <v-list-item-title>Purchase History</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="openShoppingCart">
+           
             <v-list-item-icon>
-              <v-icon
-              color="purple darken-2">mdi-cart</v-icon>
+            <v-badge
+            v-if="this.$store.state.displayPage > 0"
+          color="red darken-2"
+          overlap
+          :content="this.$store.state.shoppingCartAmt">
+        </v-badge>
+              <v-icon color="purple darken-2">
+               mdi-cart</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Shopping Cart</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="openMain">
             <v-list-item-icon>
-              <v-icon
-              color="yellow darken-2">mdi-basket</v-icon>
+              <v-icon color="yellow darken-2">mdi-basket</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Main Menu</v-list-item-title>
           </v-list-item>
+<<<<<<< HEAD
         </v-list>      
+=======
+>>>>>>> 0a1ab20a626e0905ebab47f60f3c7d204bca7248
         <v-list-item link @click="openMerchantDashboard">
           <v-list-item-icon>
             <v-icon
@@ -80,6 +89,10 @@
           </v-list-item-icon>
           <v-list-item-title>Merchant Dashoard</v-list-item-title>
         </v-list-item>
+<<<<<<< HEAD
+=======
+        </v-list>      
+>>>>>>> 0a1ab20a626e0905ebab47f60f3c7d204bca7248
       </v-navigation-drawer>
     
 
