@@ -1,5 +1,6 @@
 <template>
 <div id="main-container">
+  <h1> Store </h1>
 <v-card  v-for="item in this.$store.state.itemList" :key="item.id" class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
 
     <v-list-item three-line @click="setSelectedIndex(item.id)">
@@ -88,6 +89,9 @@ export default {
 #scroll-up {
     background: url("../assets/up-arrow.png");
 }
+  h1 {
+    text-align: center;
+  }
     
 </style>
 
