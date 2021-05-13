@@ -62,8 +62,10 @@
            
             <v-list-item-icon>
             <v-badge
+            v-if="this.$store.state.displayPage > 0"
           color="red darken-2"
-          :content="cartAmt">
+          overlap
+          :content="this.$store.state.shoppingCartAmt">
         </v-badge>
               <v-icon color="purple darken-2">
                mdi-cart</v-icon>
@@ -127,7 +129,6 @@ export default {
   data: () => ({ 
       drawer: null,
       image: null,
-      cartAmt: this.$store.state.shoppingCartAmt
      }),
   methods: {
     openAccountInfo() {
