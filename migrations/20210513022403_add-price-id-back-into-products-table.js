@@ -6,5 +6,7 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
+    return knex.schema.table('products', (t) => {
       t.dropColumn('price_id');
-  };
+  });
+}

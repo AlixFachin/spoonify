@@ -5,61 +5,75 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('products').insert([
         {
-          name: "burger", 
-          price: 2500 , 
-          description: "A tasty burger made with Kobe beef and pineapple and teriyaki sauce", 
-          price_id: "price_1IqBABIjEoyBXRG7y8aUsW9B",
-          image_filepath: "../src/assets/burger.jpg",
-          product_id: "prod_JT7OrX5ZX6B512"
-        },
-        {
-          name: "chicken_sandwich", 
-          price: 2200 , 
-          description: "Served with lettuce, onion, pickle, and drizzled in our original sauce", 
-          price_id: "price_1IqBBQIjEoyBXRG7VLq2aQRf",
-          image_filepath: "../src/assets/chicken_sandwich.jpg",
-          product_id: "prod_JT7QrYJ16rASCa"
-        },
-        {
           name: "jam", 
           price: 900 , 
-          description: "Our hand-made jam made with local fruits produced by our dedicated artisan", 
-          price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm",
+          price_2: 990,
+          description: 'Our hand-made jam made with local fruits produced by our dedicated artisan',
           image_filepath: "../src/assets/jam.jpg",
-          product_id: "prod_JT7QqW1uqY97DX"
-        },
-        {
-          name: "pickles", 
-          price: 1200 , 
-          description: "Fermented pickles with vinegar imported from Italy", 
-          image_filepath: "../src/assets/pickles.jpg",
-          product_id: "prod_JT7RjgMiHRrlpg",
-          price_id: "price_1IqBCWIjEoyBXRG7AweMuxIK"
-        },
-        {
-          name: "french_fries", 
-          price: 500 , 
-          description: "Made fresh daily, salted with sea salt", 
-          price_id: "price_1IqBDPIjEoyBXRG7Xn0aBClK",
-          image_filepath: "../src/assets/french_fries.jpg",
-          product_id: "prod_JT7SceE9y37dSO"
-        },
-        {
-          name: "curly_fries", 
-          price: 600 , 
-          description: "Made fresh daily, seasoned with our original seasoning", 
-          product_id: "prod_JT7SQ0hLVieiJl",
-          price_id: "price_1IqBDnIjEoyBXRG78JdrnJ6O",
-          image_filepath: "../src/assets/curly_fries.jpg",
+          product_id: 'prod_JT7QqW1uqY97DX',
+          price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm",
+          price_id_2: 'price_1IqmiXIjEoyBXRG7YdABTqF6'
         },
         {
           name: "brownie", 
           price: 500 , 
-          description: "Delicious homemade fudge brownies", 
+          price_2: 550,
+          description: 'Delicious homemade fudge brownies',
           image_filepath: "../src/assets/brownie.jpg",
-          product_id: "prod_JT7TyzN2nOWaNr",
-          price_id: "price_1IqBEQIjEoyBXRG7nH9IY2x5"
-        }
+          product_id: 'prod_JT7TyzN2nOWaNr',
+          price_id: "price_1IqBEQIjEoyBXRG7nH9IY2x5",
+          price_id_2: 'price_1Iqmy4IjEoyBXRG7ECMsbvR2'
+        },
+        {
+          name: 'butter cookies', 
+          price: 900 , 
+          price_2: 990,
+          description: 'Top class homemade cookies',
+          image_filepath: "../src/assets/butter_cookies.jpg",
+          product_id: 'prod_JTkWmnxitqDuwj',
+          price_id: "price_1Iqn1rIjEoyBXRG7md5vpxzD",
+          price_id_2: 'price_1Iqn1rIjEoyBXRG7lS6lmdJn'
+        },
+        {
+          name: 'beans', 
+          price: 700 , 
+          price_2: 770,
+          description: 'Original recipe baked beans',
+          image_filepath: "../src/assets/beans.jpg",
+          product_id: 'prod_JT7y4pvgiHcWSG',
+          price_id: "price_1IqBirIjEoyBXRG7hfrSgU3s",
+          price_id_2: 'price_1IqBirIjEoyBXRG7bBqyZT3s'
+        },
+        {
+          name: 'beef jerky', 
+          price: 1500 , 
+          price_2: 1650,
+          description: 'High quality smoked beef jerky with maple flavoring',
+          image_filepath: "../src/assets/beef_jery.jpg",
+          product_id: 'prod_JTkY5qBB56VJlb',
+          price_id: "price_1Iqn3sIjEoyBXRG7mv53eKvl",
+          price_id_2: 'price_1Iqn3rIjEoyBXRG7Zl9t3ezC'
+        },
+        {
+          name: 'vegetable soup', 
+          price: 800 , 
+          price_2: 880,
+          description: 'Healthy and refreshing carrots, leeks and parsnips soup',
+          image_filepath: "../src/assets/vegetable_soup.jpg",
+          product_id: 'prod_JTkcnRlN9zj1zC',
+          price_id: "price_1Iqn75IjEoyBXRG7kLP7WGUY",
+          price_id_2: 'price_1Iqn75IjEoyBXRG77OJUQzci'
+        },
+        {
+          name: 'pickles', 
+          price: 1200 , 
+          price_2: 1320,
+          description: 'Fermented pickles with vinegar imported from Italy',
+          image_filepath: "../src/assets/pickles.jpg",
+          product_id: 'prod_JT7RjgMiHRrlpg',
+          price_id: "price_1IqBCWIjEoyBXRG7AweMuxIK",
+          price_id_2: 'price_1IqmkHIjEoyBXRG7wnBNb9U9'
+        },
       ]).then(() => {
         return knex('users').del()
         .then(function () {

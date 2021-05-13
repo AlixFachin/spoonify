@@ -6,6 +6,8 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
+    return knex.schema.table('users', (t) => {
       t.dropColumn('avatar');
-  };
+  });
+}
   
