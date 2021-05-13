@@ -1,3 +1,4 @@
+ 
 <template>
 <v-app id="spoonify">
      <v-navigation-drawer
@@ -8,25 +9,38 @@
       >
         <v-list>
           <v-list-item class="px-2">
-            <v-list-item-avatar>
-              <v-img src="https://randomuser.me/api/portraits/women/25.jpg"></v-img>
+            <v-list-item-avatar color="grey">
+              <v-img color="grey" src="this.$auth.user.picture"></v-img>
+              // 
             </v-list-item-avatar>
           </v-list-item>
 
-          <v-list-item link>
+          <v-list-item v-if="$auth.isAuthenticated === true">
             <v-list-item-content>
-              <v-list-item-title class="title">
-                Sandra Adams
+              <v-list-item-title class='mb-2'>
+                {{ $auth.user.nickname }}
               </v-list-item-title>
-              <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+              <v-list-item-subtitle class="mb-3">{{ $auth.user.email }}</v-list-item-subtitle>
+              <v-divider></v-divider>
+              <v-btn>
+                <LogoutButton />
+              </v-btn>
+              
             </v-list-item-content>
           </v-list-item>
         </v-list>
 
+        <v-list-item v-if="$auth.isAuthenticated === false">
+          <v-btn>
+              <AuthenticationButton />
+          </v-btn>
+         </v-list-item> 
+       
+
         <v-divider></v-divider>
 
         <v-list
-        v-if="this.$store.state.loggedIn === true"
+        v-if="$auth.isAuthenticated === true"
           nav
           dense
         >
@@ -54,11 +68,18 @@
           <v-list-item link @click="openMain">
             <v-list-item-icon>
               <v-icon
-              color="yellow darken-2">mdi-basket</v-icon>
+              color="blue darken-2">mdi-basket</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Main Menu</v-list-item-title>
           </v-list-item>
-        </v-list>
+        <v-list-item link @click="openMerchantDashboard">
+          <v-list-item-icon>
+            <v-icon
+            color="orange darken-4">mdi-monitor-dashboard</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Merchant Dashoard</v-list-item-title>
+        </v-list-item>
+        </v-list>      
       </v-navigation-drawer>
     
 
@@ -80,46 +101,56 @@
 
 
 <script>
-import Login from './components/LoginPage.vue'
-import AccountCreation from './components/AccountCreation.vue'
 import Main from './components/Main.vue'
 import AccountInfo from './components/AccountInfo.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
 import PurchaseHistory from './components/PurchaseHistory.vue'
 import MerchantDashboard from './components/MerchantDashboard.vue'
+import AuthenticationButton from './components/AuthenticationButton.vue'
+import LogoutButton from './components/LogoutButton.vue'
 
 export default {
   name: 'App',
   components: {
-    Login,
-    AccountCreation,
     Main,
     AccountInfo,
     ShoppingCart,
     PurchaseHistory,
-    MerchantDashboard
+    MerchantDashboard,
+    AuthenticationButton,
+    LogoutButton
   },
   data: () => ({ 
       drawer: null,
+      image: null,
      }),
   methods: {
     openAccountInfo() {
-      
       this.$store.commit("openAccountInfo");
-      this.drawer = null
+      this.drawer = null;
     },
     openPurchaseHistory() {
       this.$store.commit("openPurchaseHistory");
-      this.drawer = null
+      this.drawer = null;
     },
     openShoppingCart() {
       this.$store.commit("openShoppingCart");
-      this.drawer = null
+      this.drawer = null;
     },
     openMain() {
       this.$store.commit("openMain");
-      this.drawer = null
+      this.drawer = null;
+    },
+    openMerchantDashboard() {
+      this.$store.commit("openMerchantDashboard");
+      this.drawer = null;
+    },
+    setPicture(){
+      this.image = this.$auth.user.picture
     }
+  },
+  mounted(){
+    this.setPicture()
   }
 }
 </script>
@@ -136,63 +167,3 @@ export default {
 </style>
 
 
-<!-- 
-<template>
-  <v-card  class="xl">
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant.sync="mini"
-      permanent
-      class="xl"
-    >
-      <v-list-item class="px-5">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-title>John Leider</v-list-item-title>
-
-        <v-btn
-          icon
-          @click.stop="mini = !mini"
-        >
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-card>
-</template>
-
-<script>
-  export default {
-    data () {
-      return {
-        drawer: true,
-        items: [
-          { title: 'Home', icon: 'mdi-home-city' },
-          { title: 'My Account', icon: 'mdi-account' },
-          { title: 'Users', icon: 'mdi-account-group-outline' },
-        ],
-        mini: true,
-      }
-    },
-  }
-</script> -->

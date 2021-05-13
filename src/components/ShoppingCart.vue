@@ -1,5 +1,5 @@
 <template >
-    <div>
+    <div v-if="this.$store.state.shoppingCartList.length > 0">
     <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
     <v-list-item two-line>
         <v-list-item-avatar
@@ -30,12 +30,13 @@
      :pk="publishableKey"
      :sessionId="sessionId"
       />
-     <button @click="submit">Pay Now!</button>
+     <v-button class="ml-5" color="blue white--text" @click="submit">Pay Now!</v-button>
      <v-spacer></v-spacer>
-     <div>
      ¥{{total}}
-     </div>
     </v-bottom-navigation>
+    </div>
+    <div v-else>
+        <p> You have no item in your cart.. </p>
     </div>
 </template>
 

@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "hack-server": "nodemon server/server.js",
     "make-migration": "npx knex --knexfile knexfile.js migrate:make",
+    "make-seed": "npx knex --knexfile knexfiles.js seed:make",
     "migrate": "npx knex --knexfile knexfile.js migrate:latest",
     "rollback": "npx knex --knexfile knexfile.js migrate:rollback",
-    "make-seed": "npx knex --knexfile knexfiles.js seed:make",
     "seed": "npx knex --knexfile knexfiles.js seed:run",
-    "hack-server": "nodemon server/server.js"
+    "start": "node ./server/server.js"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.15.0",
     "@vue-stripe/vue-stripe": "^4.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
@@ -26,12 +27,14 @@
     "pg": "^8.6.0",
     "stripe": "^8.148.0",
     "vue": "^2.6.12",
+    "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.13",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
