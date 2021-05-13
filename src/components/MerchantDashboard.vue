@@ -12,21 +12,23 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
               <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
-                <h3>{{order.timestamp}}</h3>
-                    <v-list-group>
-                            <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
-                            <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
-                            <v-card-text>Total price: {{order.totalPrice}}</v-card-text>
-                            <v-card-text>Delivery Fee: {{order.deliveryFee}}</v-card-text>
-                            <v-card-text>Tip: {{order.tip}}</v-card-text>
-                    </v-list-group>
+                <div v-if="order.status==='fulfilled'">
+                    <h3>{{order.timestamp}}</h3>
+                        <v-list-group>
+                                <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
+                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
+                                <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
+                                <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
+                        </v-list-group>
+                </div>
               </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
-  
+
         <v-expansion-panel>
-          <v-expansion-panel-header disable-icon-rotate>
-            In progress
+            <v-expansion-panel-header disable-icon-rotate>
+            Pending
             <template v-slot:actions>
               <v-icon color="orange">
                 mdi-history
@@ -34,13 +36,24 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+                <div v-if="order.status==='pending'">
+                    <h3>{{order.timestamp}}</h3>
+                        <v-list-group>
+                                <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
+                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
+                                <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
+                                <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
+                        </v-list-group>
+                </div>
+              </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
   
-        <v-expansion-panel>
-          <v-expansion-panel-header disable-icon-rotate>
-            Received
+                <v-expansion-panel>
+            <v-expansion-panel-header disable-icon-rotate>
+            Queued
             <template v-slot:actions>
               <v-icon color="red">
                 mdi-call-received
@@ -48,9 +61,21 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+                <div v-if="order.status==='queued'">
+                    <h3>{{order.timestamp}}</h3>
+                        <v-list-group>
+                                <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
+                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
+                                <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
+                                <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
+                        </v-list-group>
+                </div>
+              </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
+
       </v-expansion-panels>
     </div>
 </template>
