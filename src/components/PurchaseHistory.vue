@@ -1,6 +1,6 @@
 <template >
     <div id="purchase-history-container">
-        <h1> PURCHASE HISTORY </h1>
+        <h1>Purchase History</h1>
         <v-card v-for="order in this.$store.state.orderList" :key="order.id" class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
 
     
@@ -40,3 +40,11 @@ export default {
         this.$store.dispatch("fetchUserOrders");
     }
 }
+
+</script>
+
+<style scoped>
+  h1 {
+  text-align: center;
+}
+</style>

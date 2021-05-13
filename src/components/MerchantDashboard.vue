@@ -1,5 +1,6 @@
 <template >
     <div id="merchant-dashboard-container">
+      <h1> Merchant Dashboard </h1>
       <v-expansion-panels>
         
                 <v-expansion-panel>
@@ -170,6 +171,9 @@ export default {
 </script>
 
 <style scoped>
+  h1 {
+    text-align: center;
+  }
     h3 { 
         margin-left: 3vw;
     }

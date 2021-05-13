@@ -1,4 +1,6 @@
 <template >
+<div id="wrap">
+    <h1> Shopping Cart </h1>
     <div v-if="this.$store.state.shoppingCartList.length > 0">
     <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
     <v-list-item two-line>
@@ -46,6 +48,7 @@
         <v-card-title> Your shopping cart is empty! </v-card-title>
         </v-card>
     </div>
+</div>    
 </template>
 
 
@@ -108,5 +111,7 @@ export default {
 
 
 <style>
-    
+      h1 {
+    text-align: center;
+  }
 </style>

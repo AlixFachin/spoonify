@@ -1,6 +1,7 @@
 <template >
   <div id="account-info-container">
-    <v-card class="mx-auto mt-4" max-width="98%">
+      <h1> Account Info </h1>
+    <v-card>
         <v-card-title> Welcome to your account info: </v-card-title>
         <v-card-text> Username: {{ $auth.user.nickname }} </v-card-text>
         <v-card-text> Email: {{ $auth.user.email }} </v-card-text>
@@ -31,3 +32,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+  h1 {
+    text-align: center;
+  }
+</style>
