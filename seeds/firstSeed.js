@@ -84,11 +84,15 @@ exports.seed = function(knex) {
           }
           ]).then(() => {
             return knex('orders').del()
-            .then(function () {
+            .then(() => {
+              return knex('users').select('id')
+            })
+            .then((userData) => {
+              console.log(userData);
               return knex('orders').insert([
               {
-                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
-                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                userId: userData[0].id,
+                items: [{product: "Burger", quantity: 3}, {product: "Curly Fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
                 totalPrice: "6500",
@@ -96,8 +100,8 @@ exports.seed = function(knex) {
                 timestamp: "2016-06-22 19:10:25+09"
               },
               {
-                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
-                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                userId: userData[0].id,
+                items: [{product: "Burger", quantity: 3}, {product: "Curly Fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
                 totalPrice: "6500",
@@ -105,8 +109,8 @@ exports.seed = function(knex) {
                 timestamp: "2016-06-22 19:10:25+09"
               },
               {
-                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
-                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                userId: userData[0].id,
+                items: [{product: "Burger", quantity: 3}, {product: "Curly Fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
                 totalPrice: "6500",
@@ -114,8 +118,8 @@ exports.seed = function(knex) {
                 timestamp: "2016-06-22 19:10:25+09"
               },
               {
-                userId: "ab848bc4-74f8-431a-9798-685339927d76",
-                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                userId: userData[1].id,
+                items: [{product: "Burger", quantity: 3}, {product: "Curly Fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
                 totalPrice: "2300",
@@ -123,8 +127,8 @@ exports.seed = function(knex) {
                 timestamp: "2076-07-22 21:10:25+09"
               },
               {
-                userId: "8f32af7d-6a58-45f3-a61e-08dfe2ecd84c",
-                items: [{product: "burger", quantity: 7}, {product: "brownie", quantity: 10}],
+                userId: userData[2].id,
+                items: [{product: "Burger", quantity: 7}, {product: "Brownie", quantity: 10}],
                 deliveryFee: "123",
                 tip: "123",
                 totalPrice: "23450",
