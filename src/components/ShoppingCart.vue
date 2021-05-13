@@ -27,12 +27,11 @@
     <v-bottom-navigation>
      <StripeCheckout
      ref="checkoutRef"
-     mode="payment"
      :pk="publishableKey"
-     :line-items="lineItems"
+     :sessionId="sessionId"
       />
-      <v-btn block>
-      <span class="ml-2" color="blue white--text" >Pay now!</span>
+      <v-btn block @click="submit">
+      <span class="ml-2" color="blue white--text">Pay now!</span>
     </v-btn>
      <v-spacer></v-spacer>
     </v-bottom-navigation>
@@ -48,6 +47,8 @@
 <script>
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import dotenv from 'dotenv';
+import axios from 'axios';
+
 dotenv.config();
 
 
@@ -60,8 +61,18 @@ export default {
     methods: {
         submit () {
     // this.items = this.$store.state.shoppingCartList
-    this.$refs.checkoutRef.redirectToCheckout();
-    // console.log(this.items)
+    // CREATE HTTP BODY WITH PRICE_ID,QTY LIST
+    const requestBody = { lineItems : [] }
+    this.$store.state.shoppingCartList.forEach((element) => {
+            requestBody.lineItems.push({price: element.price_id, quantity: element.quantity});
+        });
+    // Create the HTTP request BODY with all the items.
+    axios.post('/create-checkout-session', requestBody).then((response) => {
+        console.log(JSON.stringify(response.data));
+        this.sessionId = response.data.id;
+        this.$refs.checkoutRef.redirectToCheckout();
+    })
+    
     },
         getTotal(){
             this.$store.state.shoppingCartList.map((element) => {
@@ -79,6 +90,7 @@ export default {
             total: 0,
             publishableKey: process.env.VUE_APP_PK,
             lineItems: [],
+            sessionId: '',
         }
     },
     mounted() {
