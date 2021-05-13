@@ -2,7 +2,7 @@
 <div id="wrap">
     <h1> Shopping Cart </h1>
     <div v-if="this.$store.state.shoppingCartList.length > 0">
-    <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
+    <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id"  class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
     <v-list-item two-line>
         <v-list-item-avatar
         class="fill-height"
