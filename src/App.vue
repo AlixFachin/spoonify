@@ -7,7 +7,7 @@
         v-model='drawer'
         app
       >
-        <v-list>
+        <v-list v-if="$auth.isAuthenticated === true">
           <v-list-item class="px-2">
             <v-list-item-avatar color="grey">
               <v-img color="grey" :src="require(`@/assets/123coolfries.jpg`)"></v-img>
@@ -158,6 +158,11 @@ export default {
   },
   mounted(){
     this.setPicture()
+  },
+  computed: {
+    selectedAvatar() {
+      return this.$store.state.grabAvatar
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template >
   <div id="account-info-container">
     <v-card class="mx-auto mt-4" max-width="98%">
-        <v-card-title> Welcome to your account information page: </v-card-title>
+        <v-card-title> Welcome to your account info: </v-card-title>
         <v-card-text> Username: {{ $auth.user.nickname }} </v-card-text>
         <v-card-text> Email: {{ $auth.user.email }} </v-card-text>
        

@@ -32,6 +32,9 @@
 export default {
     name: 'PurchaseHistory',
     methods: {
+      // setSelectedIndex(id) {
+
+      // }
     },
     mounted() {
         this.$store.dispatch("fetchUserOrders");
