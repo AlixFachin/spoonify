@@ -9,49 +9,56 @@ exports.seed = function(knex) {
           price: 2500 , 
           description: "A tasty burger made with Kobe beef and pineapple and teriyaki sauce", 
           image_filepath: "../src/assets/190524-classic-american-cheeseburger-ew-207p-2870431.jpg",
-          product_id: "prod_JT7OrX5ZX6B512"
+          product_id: "prod_JT7OrX5ZX6B512",
+          price_id: "price_1IqBABIjEoyBXRG7y8aUsW9B"
         },
         {
           name: "Chicken Sandwich", 
           price: 2200 , 
           description: "Served with lettuce, onion, pickle, and drizzled in our original sauce", 
           image_filepath: "../src/assets/",
-          product_id: "prod_JT7QrYJ16rASCa"
+          product_id: "prod_JT7QrYJ16rASCa",
+          price_id: "price_1IqBBQIjEoyBXRG7VLq2aQRf"
         },
         {
           name: "Jam", 
           price: 900 , 
           description: "Our hand-made jam made with local fruits produced by our dedicated artisan", 
           image_filepath: "../src/assets/burger-sauce-fb-ig-5-scaled.jpg",
-          product_id: "prod_JT7QqW1uqY97DX"
+          product_id: "prod_JT7QqW1uqY97DX",
+          price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm"
         },
         {
           name: "Pickles", 
           price: 1200 , 
           description: "Fermented pickles with vinegar imported from Italy", 
           image_filepath: "../src/assets/dill-pickles-14132-1.jpg",
-          product_id: "prod_JT7RjgMiHRrlpg"
+          product_id: "prod_JT7RjgMiHRrlpg",
+          price_id: "price_1IqBCWIjEoyBXRG7AweMuxIK"
         },
         {
           name: "French Fries", 
           price: 500 , 
           description: "Made fresh daily, salted with sea salt", 
           image_filepath: "../src/assets/",
-          product_id: "prod_JT7SceE9y37dSO"
+          product_id: "prod_JT7SceE9y37dSO",
+          price_id: "price_1IqBDPIjEoyBXRG7Xn0aBClK"
         },
         {
           name: "Curly Fries", 
           price: 600 , 
           description: "Made fresh daily, seasoned with our original seasoning", 
           image_filepath: "../src/assets/",
-          product_id: "prod_JT7SQ0hLVieiJl"
+          product_id: "prod_JT7SQ0hLVieiJl",
+          price_id: "price_1IqBDnIjEoyBXRG78JdrnJ6O"
         },
         {
           name: "Brownie", 
           price: 500 , 
           description: "Delicious homemade fudge brownies", 
           image_filepath: "../src/assets/",
-          product_id: "prod_JT7TyzN2nOWaNr"
+          product_id: "prod_JT7TyzN2nOWaNr",
+          price_id: "price_1IqBEQIjEoyBXRG7nH9IY2x5"
         }
       ]).then(() => {
         return knex('users').del()
