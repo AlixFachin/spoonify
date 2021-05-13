@@ -1,33 +1,28 @@
 <template >
-    <div id="purchase-history-container">
-        <h1> PURCHASE HISTORY </h1>
-        <v-card v-for="item in this.$store.state.itemList" :key="item.id" class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
-        <!-- <v-card v-for="item in this.$store.state.orderList" :key="order.id" class="mx-auto mt-1" max-width="98%" elevation="4" rounded> -->
-
-    
-    <v-list-item two-line @click="setSelectedIndex(order.id)">
-    <v-list-item-content>
-        <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
-        <!-- <v-list-item-title class="mb-2"> {{order.timestamp}} </v-list-item-title> -->
-        <v-list-item-subtitle>¥{{item.price}}</v-list-item-subtitle>
-        <!-- <v-list-item-subtitle>¥{{order.totalPrice}}</v-list-item-subtitle> -->        
-    </v-list-item-content>
-        
-    </v-list-item>
-    
-    <v-card-actions>
-     
-    <v-spacer></v-spacer>
-     <v-btn icon @click="setSelectedIndex(item.id)">
-     <v-icon>{{ item.id === selectedIndex ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-    <v-expand-transition>
-      <div v-show="item.id === selectedIndex">
-        <v-card-text>{{item.description}}</v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>
+   <div id="purchase-history-container">
+      <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+            small
+            >
+            Update Status
+            </v-btn>
+        </template>
+      <v-list>
+        <h3>{{order.timestamp}}</h3>
+      </v-list>
+            <v-list-group>
+                    <v-card-text>Order ID: {{order.userId}}</v-card-text>
+                    <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                    <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
+                    <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
+                    <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
+            </v-list-group>
+      </v-card>
     </div>
 </template>
 
@@ -40,3 +35,9 @@ export default {
         this.$store.dispatch("fetchUserOrders");
     }
 }
+</script>
+<style scoped>
+  h3 {
+    text-align: center;
+  }
+</style>
