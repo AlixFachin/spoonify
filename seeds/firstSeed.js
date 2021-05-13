@@ -88,7 +88,7 @@ exports.seed = function(knex) {
             .then(function () {
               return knex('orders').insert([
               {
-                userId: "3958d206-5d84-4c35-b1f1-84fec28b794c",
+                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
                 items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
@@ -97,7 +97,25 @@ exports.seed = function(knex) {
                 timestamp: "2016-06-22 19:10:25+09"
               },
               {
-                userId: "3567d206-5d84-4c35-b1f1-84fec28b789d",
+                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
+                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                deliveryFee: "123",
+                tip: "123",
+                totalPrice: "6500",
+                status: "in progress",
+                timestamp: "2016-06-22 19:10:25+09"
+              },
+              {
+                userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
+                items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
+                deliveryFee: "123",
+                tip: "123",
+                totalPrice: "6500",
+                status: "fulfilled",
+                timestamp: "2016-06-22 19:10:25+09"
+              },
+              {
+                userId: "ab848bc4-74f8-431a-9798-685339927d76",
                 items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
@@ -106,7 +124,7 @@ exports.seed = function(knex) {
                 timestamp: "2076-07-22 21:10:25+09"
               },
               {
-                userId: "3878d206-5d84-4c35-b1f1-84fec28b798b",
+                userId: "8f32af7d-6a58-45f3-a61e-08dfe2ecd84c",
                 items: [{product: "burger", quantity: 7}, {product: "brownie", quantity: 10}],
                 deliveryFee: "123",
                 tip: "123",
