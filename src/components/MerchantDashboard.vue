@@ -11,29 +11,15 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-              <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
-                <v-list-item two-line>
-                    <v-list-item-avatar
-                    class="fill-height grey"
-                    tile
-                    left
-                    max-height="50"
-                    size="20%"
-                    color="grey">
-                    <v-img color='grey' class="fill-height grey"
-                        :src="require(`@/assets/${item.name}.jpg`)"
-                        ></v-img>
-                    </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
-                    <v-list-item-subtitle>quantity:{{item.quantity}}</v-list-item-subtitle>
-                </v-list-item-content>
-                <v-spacer></v-spacer>
-                <v-list-item-content>
-                    <v-list-item-title class="mb-2">¥{{item.price}}</v-list-item-title>
-                    <v-list-item-subtitle></v-list-item-subtitle>
-                </v-list-item-content>
-                </v-list-item>
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+                <h3>{{order.timestamp}}</h3>
+                    <v-list-group>
+                            <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
+                            <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                            <v-card-text>Total price: {{order.totalPrice}}</v-card-text>
+                            <v-card-text>Delivery Fee: {{order.deliveryFee}}</v-card-text>
+                            <v-card-text>Tip: {{order.tip}}</v-card-text>
+                    </v-list-group>
               </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -73,8 +59,17 @@
 export default {
     name: 'MerchantDashboard',
     methods: {
+        fulfilledOrders() {
+            console.log("help")
+            this.$store.commit("fulfilledOrdersFilter")
     },
-    // mounted() {
-    //     this.$store.dispatch("fetchUserOrders")
-    // }
+    }
 }
+
+</script>
+
+<style scoped>
+    h3 { 
+        text-align: center;    
+    }
+</style>

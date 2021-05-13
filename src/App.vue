@@ -68,18 +68,18 @@
           <v-list-item link @click="openMain">
             <v-list-item-icon>
               <v-icon
-              color="yellow darken-2">mdi-basket</v-icon>
+              color="blue darken-2">mdi-basket</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Main Menu</v-list-item-title>
           </v-list-item>
-        </v-list>      
         <v-list-item link @click="openMerchantDashboard">
           <v-list-item-icon>
             <v-icon
-            color="yellow darken-2">mdi-monitor-dashboard</v-icon>
+            color="orange darken-4">mdi-monitor-dashboard</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Merchant Dashoard</v-list-item-title>
         </v-list-item>
+        </v-list>      
       </v-navigation-drawer>
     
 

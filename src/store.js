@@ -12,10 +12,61 @@ export default new Vuex.Store({
         userRole: "guest",
         itemList: [],
         shoppingCartList: [],
-        orderList: [],
+        orderList: [{
+            uuid: 0,
+            userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
+            items: [{product: "Jam", quantity: 3}, {product: "Curly Fries", quantity: 1}],
+            deliveryFee: "123",
+            tip: "123",
+            totalPrice: "6500",
+            status: "pending",
+            timestamp: "2016-06-21 11:10:25+09"
+          },
+          {
+            uuid: 1,
+            userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
+            items: [{product: "Burger", quantity: 3}, {product: "Curly Fries", quantity: 1}],
+            deliveryFee: "123",
+            tip: "123",
+            totalPrice: "6500",
+            status: "in progress",
+            timestamp: "2016-06-22 17:10:25+09"
+          },
+          {
+            uuid: 2,
+            userId: "ce558d70-7b0b-4b15-89d9-fe920f0d1250",
+            items: [{product: "Burger", quantity: 3}, {product: "French Fries", quantity: 1}],
+            deliveryFee: "123",
+            tip: "123",
+            totalPrice: "6500",
+            status: "fulfilled",
+            timestamp: "2016-06-22 19:12:25+09"
+          },
+          {
+            uuid: 3,
+            userId: "ab848bc4-74f8-431a-9798-685339927d76",
+            items: [{product: "Chicken Sandwich", quantity: 1}, {product: "Pickles", quantity: 4}],
+            deliveryFee: "123",
+            tip: "123",
+            totalPrice: "2300",
+            status: "complete",
+            timestamp: "2016-07-23 21:10:25+09"
+          },
+          {
+            uuid: 4,
+            userId: "8f32af7d-6a58-45f3-a61e-08dfe2ecd84c",
+            items: [{product: "Burger", quantity: 7}, {product: "Brownie", quantity: 10}],
+            deliveryFee: "123",
+            tip: "123",
+            totalPrice: "23450",
+            status: "pending",
+            timestamp: "2016-07-27 08:21:03+09"
+          }],
+          fulfilledOrders: [],
         userDetails: [],
         allUsers: []
         
+
     }, 
 
     mutations: {
@@ -62,6 +113,13 @@ export default new Vuex.Store({
         },
         openMerchantDashboard(state) {
             state.displayPage = 'MerchantDashboard'
+        },
+        fulfilledOrdersFilter(state) {
+        const fulfilled = [];
+        for (const order in state.orderList) {
+            console.log(order)
+        }
+            state.fulfilledOrders = fulfilled
         }
     },
 
