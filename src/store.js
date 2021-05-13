@@ -16,7 +16,8 @@ export default new Vuex.Store({
         userDetails: [],
         allUsers: [],
         shoppingCartAmt: 0,
-        
+        // grabAvatar: null,
+        // allAvatars: []
     }, 
 
     mutations: {
@@ -65,7 +66,11 @@ export default new Vuex.Store({
         },
         openMerchantDashboard(state) {
             state.displayPage = 'MerchantDashboard'
-        }
+        },
+        // randomAvatar(state, allAvatars) {
+        //     let randomIndex = Math.floor(Math.random() * state.allAvatars.length)
+        //     state.grabAvatar = state.allAvatars[randomIndex]
+        // }
     },
 
     actions: {

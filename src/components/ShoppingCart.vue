@@ -3,15 +3,20 @@
     <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id">
     <v-list-item two-line>
         <v-list-item-avatar
-        class="fill-height grey"
+        class="fill-height"
         tile
         left
         max-height="50"
         size="20%"
-        color="grey">
-        <!-- <v-img color='grey' class="fill-height grey"
+        >
+        <v-container
+        class="fill-height"
+        fluid
+        style="min-height: 434px">
+        <v-img 
             :src="require(`@/assets/${item.name}.jpg`)"
-            ></v-img> -->
+            ></v-img>
+        </v-container>
         </v-list-item-avatar>
     <v-list-item-content>
         <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
