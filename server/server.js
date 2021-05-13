@@ -44,8 +44,8 @@ app.post('/create-checkout-session', async( req, res) => {
     payment_method_types: ['card'],
     line_items: req.body.lineItems,
     mode: 'payment',
-    success_url: process.env.SUCCESS_URL,
-    cancel_url: process.env.CANCEL_URL
+    success_url: process.env.SUCCESS_URL || 'http://localhost:8080',
+    cancel_url: process.env.CANCEL_URL || 'http://localhost:8080'
   });
   // TO DO : Register the sessionId for future callbacks.
   res.json({ id: session.id});
