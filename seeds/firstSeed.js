@@ -5,7 +5,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('products').insert([
         {
-          name: "Burger", 
+          name: "burger", 
           price: 2500 , 
           description: "A tasty burger made with Kobe beef and pineapple and teriyaki sauce", 
           price_id: "price_1IqBABIjEoyBXRG7y8aUsW9B",
@@ -13,7 +13,7 @@ exports.seed = function(knex) {
           product_id: "prod_JT7OrX5ZX6B512"
         },
         {
-          name: "Chicken Sandwich", 
+          name: "chicken_sandwich", 
           price: 2200 , 
           description: "Served with lettuce, onion, pickle, and drizzled in our original sauce", 
           price_id: "price_1IqBBQIjEoyBXRG7VLq2aQRf",
@@ -21,7 +21,7 @@ exports.seed = function(knex) {
           product_id: "prod_JT7QrYJ16rASCa"
         },
         {
-          name: "Jam", 
+          name: "jam", 
           price: 900 , 
           description: "Our hand-made jam made with local fruits produced by our dedicated artisan", 
           price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm",
@@ -29,7 +29,7 @@ exports.seed = function(knex) {
           product_id: "prod_JT7QqW1uqY97DX"
         },
         {
-          name: "Pickles", 
+          name: "pickles", 
           price: 1200 , 
           description: "Fermented pickles with vinegar imported from Italy", 
           image_filepath: "../src/assets/pickles.jpg",
@@ -37,7 +37,7 @@ exports.seed = function(knex) {
           price_id: "price_1IqBCWIjEoyBXRG7AweMuxIK"
         },
         {
-          name: "French Fries", 
+          name: "french_fries", 
           price: 500 , 
           description: "Made fresh daily, salted with sea salt", 
           price_id: "price_1IqBDPIjEoyBXRG7Xn0aBClK",
@@ -45,7 +45,7 @@ exports.seed = function(knex) {
           product_id: "prod_JT7SceE9y37dSO"
         },
         {
-          name: "Curly Fries", 
+          name: "curly_fries", 
           price: 600 , 
           description: "Made fresh daily, seasoned with our original seasoning", 
           product_id: "prod_JT7SQ0hLVieiJl",
@@ -53,7 +53,7 @@ exports.seed = function(knex) {
           image_filepath: "../src/assets/curly_fries.jpg",
         },
         {
-          name: "Brownie", 
+          name: "brownie", 
           price: 500 , 
           description: "Delicious homemade fudge brownies", 
           image_filepath: "../src/assets/brownie.jpg",

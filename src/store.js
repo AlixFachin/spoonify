@@ -64,7 +64,8 @@ export default new Vuex.Store({
           }],
           fulfilledOrders: [],
         userDetails: [],
-        allUsers: []
+        allUsers: [],
+        shoppingCartAmt: 0,
         
 
     }, 
@@ -75,9 +76,11 @@ export default new Vuex.Store({
         if(checkExist){
             let cartIndex = state.shoppingCartList.indexOf(checkExist)
             state.shoppingCartList[cartIndex].quantity += 1
+            state.shoppingCartAmt += 1
         } else {
             payload.quantity = 1
             state.shoppingCartList.push(payload)
+            state.shoppingCartAmt += 1
         }
         },
 

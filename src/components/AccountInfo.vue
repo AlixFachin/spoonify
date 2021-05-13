@@ -1,15 +1,13 @@
 <template >
-    <div id="account-info-container">
-    <v-card>
-        <h1> {{getOneUser.userName}} </h1>
-        <h2> {{getOneUser.fullName}} </h2>
-        <h2> {{getOneUser.address}} </h2>
-    <h1>Hello, I'm here</h1>
+  <div id="account-info-container">
+    <v-card class="mx-auto mt-4" max-width="98%">
+        <v-card-title> Welcome to your account information page: </v-card-title>
+        <v-card-text> Username: {{ $auth.user.nickname }} </v-card-text>
+        <v-card-text> Email: {{ $auth.user.email }} </v-card-text>
+       
     </v-card>
-   
-    </div>
+  </div>
 </template>
-
 
 <script>
 export default {
@@ -21,6 +19,7 @@ export default {
         this.$store.dispatch("fetchAllUsers");
         console.log("inside acc info");
         
+        
     },
     computed: {
         getOneUser() {
@@ -28,6 +27,7 @@ export default {
             console.log("I am all users", this.$store.state.allUsers[0])
             return this.$store.state.allUsers[0];
         }
+        
     }
 }
 </script>

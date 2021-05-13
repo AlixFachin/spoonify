@@ -30,13 +30,16 @@
      :pk="publishableKey"
      :sessionId="sessionId"
       />
-     <v-button class="ml-5" color="blue white--text" @click="submit">Pay Now!</v-button>
+      <v-btn block @click="submit">
+      <span class="ml-2" color="blue white--text">Pay now!</span>
+    </v-btn>
      <v-spacer></v-spacer>
-     ¥{{total}}
     </v-bottom-navigation>
     </div>
     <div v-else>
-        <p> You have no item in your cart.. </p>
+        <v-card class="p5">
+        <v-card-title> Your shopping cart is empty! </v-card-title>
+        </v-card>
     </div>
 </template>
 
