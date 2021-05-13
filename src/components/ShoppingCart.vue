@@ -9,9 +9,9 @@
         max-height="50"
         size="20%"
         color="grey">
-        <v-img color='grey' class="fill-height grey"
+        <!-- <v-img color='grey' class="fill-height grey"
             :src="require(`@/assets/${item.name}.jpg`)"
-            ></v-img>
+            ></v-img> -->
         </v-list-item-avatar>
     <v-list-item-content>
         <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
@@ -31,9 +31,10 @@
      :pk="publishableKey"
      :line-items="lineItems"
       />
-     <v-button class="ml-5" color="blue white--text" @click="submit">Pay Now!</v-button>
+      <v-btn block>
+      <span class="ml-2" color="blue white--text" >Pay now!</span>
+    </v-btn>
      <v-spacer></v-spacer>
-     ¥{{total}}
     </v-bottom-navigation>
     </div>
     <div v-else>

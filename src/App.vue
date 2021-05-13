@@ -10,7 +10,7 @@
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar color="grey">
-              <v-img color="grey" :src="$auth.user.picture"></v-img>
+              <v-img color="grey" :src="require(`@/assets/123coolfries.jpg`)"></v-img>
             </v-list-item-avatar>
           </v-list-item>
 
@@ -43,6 +43,12 @@
           nav
           dense
         >
+         <v-list-item link @click="openMain">
+            <v-list-item-icon>
+              <v-icon color="yellow darken-2">mdi-basket</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Main Menu</v-list-item-title>
+          </v-list-item>
           <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>
               <v-icon
@@ -52,7 +58,7 @@
           </v-list-item>
           <v-list-item link @click="openPurchaseHistory">
             <v-list-item-icon>
-        <v-icon
+            <v-icon
               color="red darken-2">mdi-credit-card</v-icon>
             </v-list-item-icon>
               
@@ -61,8 +67,8 @@
           <v-list-item link @click="openShoppingCart">
            
             <v-list-item-icon>
-            <v-badge
-            v-if="this.$store.state.displayPage > 0"
+        <v-badge
+          v-if="this.$store.state.shoppingCartAmt > 0"
           color="red darken-2"
           overlap
           :content="this.$store.state.shoppingCartAmt">
@@ -72,12 +78,7 @@
             </v-list-item-icon>
             <v-list-item-title>Shopping Cart</v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="openMain">
-            <v-list-item-icon>
-              <v-icon color="yellow darken-2">mdi-basket</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Main Menu</v-list-item-title>
-          </v-list-item>
+         
         <v-list-item link @click="openMerchantDashboard">
           <v-list-item-icon>
             <v-icon

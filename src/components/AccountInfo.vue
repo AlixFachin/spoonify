@@ -4,9 +4,10 @@
         <v-card-title> Welcome to your account information page: </v-card-title>
         <v-card-text> Username: {{ $auth.user.nickname }} </v-card-text>
         <v-card-text> Email: {{ $auth.user.email }} </v-card-text>
-        <v-card-text> Address: 442 Herring Street </v-card-text>
-        <v-img color="grey" :src="this.$auth.user.picture"></v-img>
-        <v-img color="grey" :src="require(`@/assets/${item.name}.jpg`)"></v-img>
+        <v-card-text> </v-card-text>
+        <v-list-item-avatar color="grey">
+              <v-img color="grey" :src="require(`@/assets/123coolfries.jpg`)"></v-img>
+            </v-list-item-avatar>
     </v-card>
   </div>
 </template>

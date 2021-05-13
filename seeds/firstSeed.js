@@ -130,21 +130,4 @@ exports.seed = function(knex) {
      });
    });
  });
-};                timestamp: "2076-07-22 21:10:25+09"
-              },
-              {
-                userId: "8f32af7d-6a58-45f3-a61e-08dfe2ecd84c",
-                items: [{product: "burger", quantity: 7}, {product: "brownie", quantity: 10}],
-                deliveryFee: "123",
-                tip: "123",
-                totalPrice: "23450",
-                status: "pending",
-                timestamp: "2056-06-22 19:24:25+09"
-              }
-          ]);
-         });
-       });
-     });
-   });
- });
-};
+}; 
