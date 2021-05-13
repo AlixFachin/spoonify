@@ -1,6 +1,7 @@
 <template >
     <div id="merchant-dashboard-container">
       <h1> Merchant Dashboard </h1>
+      <v-card  class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
       <v-expansion-panels>
         
                 <v-expansion-panel>
@@ -147,6 +148,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+      </v-card>
     </div>
 </template>
 
@@ -174,12 +176,12 @@ export default {
   h1 {
     text-align: center;
   }
-    h3 { 
-        margin-left: 3vw;
-    }
-    #righty, #righty2, #righty3 {
-      float: right;
-      margin-top: 3%;
-      margin-right: 3%;
-    }
+  h3 { 
+      margin-left: 3vw;
+  }
+  #righty, #righty2, #righty3 {
+    float: right;
+    margin-top: 3%;
+    margin-right: 3%;
+  }
 </style>
