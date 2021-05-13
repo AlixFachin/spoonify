@@ -16,7 +16,7 @@ exports.seed = function(knex) {
           name: "Chicken Sandwich", 
           price: 2200 , 
           description: "Served with lettuce, onion, pickle, and drizzled in our original sauce", 
-          price_id: "price_1IqBBQIjEoyBXRG7VLq2aQRf"
+          price_id: "price_1IqBBQIjEoyBXRG7VLq2aQRf",
           image_filepath: "../src/assets/chicken_sandwich.jpg",
           product_id: "prod_JT7QrYJ16rASCa"
         },
@@ -24,7 +24,7 @@ exports.seed = function(knex) {
           name: "Jam", 
           price: 900 , 
           description: "Our hand-made jam made with local fruits produced by our dedicated artisan", 
-          price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm"
+          price_id: "price_1IqBC1IjEoyBXRG7LkvGLIKm",
           image_filepath: "../src/assets/jam.jpg",
           product_id: "prod_JT7QqW1uqY97DX"
         },
@@ -40,7 +40,7 @@ exports.seed = function(knex) {
           name: "French Fries", 
           price: 500 , 
           description: "Made fresh daily, salted with sea salt", 
-          price_id: "price_1IqBDPIjEoyBXRG7Xn0aBClK"
+          price_id: "price_1IqBDPIjEoyBXRG7Xn0aBClK",
           image_filepath: "../src/assets/french_fries.jpg",
           product_id: "prod_JT7SceE9y37dSO"
         },
@@ -49,7 +49,7 @@ exports.seed = function(knex) {
           price: 600 , 
           description: "Made fresh daily, seasoned with our original seasoning", 
           product_id: "prod_JT7SQ0hLVieiJl",
-          price_id: "price_1IqBDnIjEoyBXRG78JdrnJ6O"
+          price_id: "price_1IqBDnIjEoyBXRG78JdrnJ6O",
           image_filepath: "../src/assets/curly_fries.jpg",
         },
         {
@@ -143,5 +143,5 @@ exports.seed = function(knex) {
             
      });
    });
- });
-};
+ }
+ 
