@@ -37,7 +37,9 @@
     </v-bottom-navigation>
     </div>
     <div v-else>
-        <p> You have no item in your cart.. </p>
+        <v-card class="p5">
+        <v-card-title> Your shopping cart is empty! </v-card-title>
+        </v-card>
     </div>
 </template>
 
