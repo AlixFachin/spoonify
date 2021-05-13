@@ -83,11 +83,12 @@ exports.seed = function(knex) {
             role: "user"
           }
           ]).then(() => {
-            return knex('orders').del()
+            return knex('users').select('userId').then((dbData) => {
+              return knex('orders').del()
             .then(function () {
               return knex('orders').insert([
               {
-                // userId: "3958d206-5d84-4c35-b1f1-84fec28b794c",
+                userId: "3958d206-5d84-4c35-b1f1-84fec28b794c",
                 items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
@@ -96,7 +97,7 @@ exports.seed = function(knex) {
                 timestamp: "2016-06-22 19:10:25+09"
               },
               {
-                // userId: "3567d206-5d84-4c35-b1f1-84fec28b789d",
+                userId: "3567d206-5d84-4c35-b1f1-84fec28b789d",
                 items: [{product: "burger", quantity: 3}, {product: "curly fries", quantity: 1}],
                 deliveryFee: "123",
                 tip: "123",
@@ -105,7 +106,7 @@ exports.seed = function(knex) {
                 timestamp: "2076-07-22 21:10:25+09"
               },
               {
-                // userId: "3878d206-5d84-4c35-b1f1-84fec28b798b",
+                userId: "3878d206-5d84-4c35-b1f1-84fec28b798b",
                 items: [{product: "burger", quantity: 7}, {product: "brownie", quantity: 10}],
                 deliveryFee: "123",
                 tip: "123",
@@ -116,6 +117,9 @@ exports.seed = function(knex) {
           ]);
          });
        });
+
+            });
+            
      });
    });
  });

@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const knexLib = require('knex');
 const knexConfig = require('../knexfile.js');
 const path = require('path');
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 
 const db = knexLib( (process.env.NODE_ENV && process.env.NODE_ENV === 'production' ) ?  
   knexConfig.production : 
@@ -35,6 +37,22 @@ app.get('/api/usersTest', (request, responseHandler) => {
     responseHandler.status(500).send(`Server error ${error}`);
   });
 });
+
+// Stripe-related endpoint ---------------------------------------
+app.post('/create-checkout-session', async( req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: req.body.lineItems,
+    mode: 'payment',
+    success_url: process.env.SUCCESS_URL,
+    cancel_url: process.env.CANCEL_URL
+  });
+  // TO DO : Register the sessionId for future callbacks.
+  res.json({ id: session.id});
+
+});
+
+// Database Endpoints --------------------------------------------
 
 app.get('/api/product/:id', (request, responseHandler) => {
   db('products').select('*').where('id',request.params.id).then((dbData) => {
@@ -118,44 +136,45 @@ app.post('/api/user', (request, responseHandler) => {
 });
 
 app.post('/api/order', (request, responseHandler) => {
-  db('orders').insert(
-    {
-      userId: request.body.userId, 
-      items: request.body.items, 
-      deliveryFee: request.body.deliveryFee,
-      tip: request.body.tip,
-      totalPrice: request.body.totalPrice,
-      status: request.body.status,
-      // to fix, make sure it matches database timestamp structure knex uses Timestamp TZ
-      timestamp: new Date()
-    },
-    ['id', 'userId', 'items', 'deliveryFee', 'tip', 'totalPrice', 'status', 'timestamp']
-  ).then((dbData) => {
-    console.log(dbData);
-    if (request.body.userId === "") {
-      responseHandler.status(400).send("User ID required");
-    } else if (request.body.items ==="") {
-      responseHandler.status(400).send("Order items required");
-    } else if (request.body.deliveryFee === "") {
-      responseHandler.status(400).send("Delivery fee required");
-    } else if (request.body.tip === "") {
-      responseHandler.status(400).send("Tip required");
-    } else if (request.body.totalPrice === "") {
-      responseHandler.status(400).send("Total price required");
-    } else if (request.body.status === "") {
-      responseHandler.status(400).send("Order status required");
-    } else if (request.body.timestamp === "") {
-      responseHandler.status(400).send("Order timestamp required");
-    } else {
+  
+  if (request.body.userId === "") {
+    responseHandler.status(400).send("User ID required");
+  } else if (request.body.items === "") {
+    responseHandler.status(400).send("Order items required");
+  } else if (request.body.deliveryFee === "") {
+    responseHandler.status(400).send("Delivery fee required");
+  } else if (request.body.tip === "") {
+    responseHandler.status(400).send("Tip required");
+  } else if (request.body.totalPrice === "") {
+    responseHandler.status(400).send("Total price required");
+  } else if (request.body.status === "") {
+    responseHandler.status(400).send("Order status required");
+  } else if (request.body.timestamp === "") {
+    responseHandler.status(400).send("Order timestamp required");
+  } else {
+    db('orders').insert(
+      {
+        userId: request.body.userId, 
+        items: request.body.items, 
+        deliveryFee: request.body.deliveryFee,
+        tip: request.body.tip,
+        totalPrice: request.body.totalPrice,
+        status: request.body.status,
+        // to fix, make sure it matches database timestamp structure knex uses Timestamp TZ
+        timestamp: new Date()
+      },
+      ['id', 'userId', 'items', 'deliveryFee', 'tip', 'totalPrice', 'status', 'timestamp']
+    ).then((dbData) => {
+      console.log(dbData);
       responseHandler.status(200).send(dbData[0]);
-    }
-  }).catch((error) => {
-    responseHandler.status(500).send(`Server error ${error}`);
-  });
+    }).catch((error) => {
+      responseHandler.status(500).send(`Server error ${error}`);
+    });
+  }
 });
 
 app.patch('/api/order/:id'), (request, responseHandler) => {
-  newStatus = request.body.status;
+  const newStatus = request.body.status;
   db('orders').update({
     status: newStatus,
     thisKeyIsSkipped: undefined

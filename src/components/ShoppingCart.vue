@@ -9,9 +9,9 @@
         max-height="50"
         size="20%"
         color="grey">
-        <v-img color='grey' class="fill-height grey"
+        <!-- <v-img color='grey' class="fill-height grey"
             :src="require(`@/assets/${item.name}.jpg`)"
-            ></v-img>
+            ></v-img> -->
         </v-list-item-avatar>
     <v-list-item-content>
         <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
@@ -27,9 +27,8 @@
     <v-bottom-navigation>
      <StripeCheckout
      ref="checkoutRef"
-     mode="payment"
      :pk="publishableKey"
-     :line-items="lineItems"
+     :sessionId="sessionId"
       />
      <button @click="submit">Pay Now!</button>
      <v-spacer></v-spacer>
@@ -44,6 +43,8 @@
 <script>
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import dotenv from 'dotenv';
+import axios from 'axios';
+
 dotenv.config();
 
 
@@ -56,8 +57,18 @@ export default {
     methods: {
         submit () {
     // this.items = this.$store.state.shoppingCartList
-    this.$refs.checkoutRef.redirectToCheckout();
-    // console.log(this.items)
+    // CREATE HTTP BODY WITH PRICE_ID,QTY LIST
+    const requestBody = { lineItems : [] }
+    this.$store.state.shoppingCartList.forEach((element) => {
+            requestBody.lineItems.push({price: element.price_id, quantity: element.quantity});
+        });
+    // Create the HTTP request BODY with all the items.
+    axios.post('/create-checkout-session', requestBody).then((response) => {
+        console.log(JSON.stringify(response.data));
+        this.sessionId = response.data.id;
+        this.$refs.checkoutRef.redirectToCheckout();
+    })
+    
     },
         getTotal(){
             this.$store.state.shoppingCartList.map((element) => {
@@ -75,6 +86,7 @@ export default {
             total: 0,
             publishableKey: process.env.VUE_APP_PK,
             lineItems: [],
+            sessionId: '',
         }
     },
     mounted() {
