@@ -64,9 +64,10 @@ export default new Vuex.Store({
           }],
           fulfilledOrders: [],
         userDetails: [],
-        allUsers: []
-        
-
+        allUsers: [],
+        shoppingCartAmt: 0,
+        // grabAvatar: null,
+        // allAvatars: []
     }, 
 
     mutations: {
@@ -75,9 +76,11 @@ export default new Vuex.Store({
         if(checkExist){
             let cartIndex = state.shoppingCartList.indexOf(checkExist)
             state.shoppingCartList[cartIndex].quantity += 1
+            state.shoppingCartAmt += 1
         } else {
             payload.quantity = 1
             state.shoppingCartList.push(payload)
+            state.shoppingCartAmt += 1
         }
         },
 
@@ -114,12 +117,9 @@ export default new Vuex.Store({
         openMerchantDashboard(state) {
             state.displayPage = 'MerchantDashboard'
         },
-        // fulfilledOrdersFilter(state) {
-        // const fulfilled = [];
-        // for (const order in state.orderList) {
-        //     console.log(order)
-        // }
-        //     state.fulfilledOrders = fulfilled
+        // randomAvatar(state, allAvatars) {
+        //     let randomIndex = Math.floor(Math.random() * state.allAvatars.length)
+        //     state.grabAvatar = state.allAvatars[randomIndex]
         // }
     },
 
