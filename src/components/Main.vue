@@ -65,7 +65,6 @@ export default {
                 } else {
                 this.selectedIndex = id
                 }
-
             }
         }
         // getImages() {

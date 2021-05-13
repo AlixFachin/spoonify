@@ -1,8 +1,9 @@
 <template >
     <div id="merchant-dashboard-container">
       <v-expansion-panels>
-        <v-expansion-panel>
-          <v-expansion-panel-header disable-icon-rotate>
+        
+                <v-expansion-panel>
+            <v-expansion-panel-header disable-icon-rotate>
             Fulfilled
             <template v-slot:actions>
               <v-icon color="green">
@@ -10,12 +11,14 @@
               </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+          <v-expansion-panel-content >
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid" >
                 <div v-if="order.status==='fulfilled'">
-                        <v-menu class="update-status-btn" offset-y>
-                            <template v-slot:activator="{ on, attrs }">
+                    <h3>{{order.timestamp}}</h3>
+                    <v-menu class="update-status-btn" offset-y>
+                       <template v-slot:activator="{ on, attrs }">
                                 <v-btn
+                                id="righty3"
                                 color="primary"
                                 dark
                                 v-bind="attrs"
@@ -31,10 +34,13 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                    <h3>{{order.timestamp}}</h3>
                         <v-list-group>
                                 <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
-                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>{{order.items[0].product}} x{{order.items[0].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[1])">{{order.items[1].product}} x{{order.items[1].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[2])">{{order.items[2].product}} x{{order.items[2].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[3])">{{order.items[3].product}} x{{order.items[3].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[4])">{{order.items[4].product}} x{{order.items[4].quantity}}</v-card-text>
                                 <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
                                 <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
                                 <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
@@ -56,9 +62,11 @@
           <v-expansion-panel-content>
               <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
                 <div v-if="order.status==='pending'">
-                        <v-menu class="update-status-btn" offset-y>
-                            <template v-slot:activator="{ on, attrs }">
+                    <h3>{{order.timestamp}}</h3>
+                    <v-menu class="update-status-btn" offset-y>
+                       <template v-slot:activator="{ on, attrs }">
                                 <v-btn
+                                id="righty2"
                                 color="primary"
                                 dark
                                 v-bind="attrs"
@@ -74,10 +82,13 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                    <h3>{{order.timestamp}}</h3>
                         <v-list-group>
                                 <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
-                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>{{order.items[0].product}} x{{order.items[0].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[1])">{{order.items[1].product}} x{{order.items[1].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[2])">{{order.items[2].product}} x{{order.items[2].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[3])">{{order.items[3].product}} x{{order.items[3].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[4])">{{order.items[4].product}} x{{order.items[4].quantity}}</v-card-text>
                                 <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
                                 <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
                                 <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
@@ -99,9 +110,11 @@
           <v-expansion-panel-content>
               <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
                 <div v-if="order.status==='queued'">
+                    <h3>{{order.timestamp}}</h3>
                     <v-menu class="update-status-btn" offset-y>
                        <template v-slot:activator="{ on, attrs }">
                                 <v-btn
+                                id="righty3"
                                 color="primary"
                                 dark
                                 v-bind="attrs"
@@ -113,14 +126,17 @@
                             </template>
                             <v-list>
                                 <v-list-item v-for="(item, index) in items" :key="index">
-                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                    <v-list-item-title @click="updateStatus(order.uuid, item.title)">{{ item.title }}</v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                    <h3>{{order.timestamp}}</h3>
                         <v-list-group>
                                 <v-card-text>Buyer's ID: {{order.userId}}</v-card-text>
-                                <!-- <v-card-text v-for="item in order.items">{{item.product}} x{{item.quantity}}</v-card-text> -->
+                                <v-card-text>{{order.items[0].product}} x{{order.items[0].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[1])">{{order.items[1].product}} x{{order.items[1].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[2])">{{order.items[2].product}} x{{order.items[2].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[3])">{{order.items[3].product}} x{{order.items[3].quantity}}</v-card-text>
+                                <v-card-text v-if="(order.items[4])">{{order.items[4].product}} x{{order.items[4].quantity}}</v-card-text>
                                 <v-card-text>Total price: ¥{{order.totalPrice}}</v-card-text>
                                 <v-card-text>Delivery Fee: ¥{{order.deliveryFee}}</v-card-text>
                                 <v-card-text>Tip: ¥{{order.tip}}</v-card-text>
@@ -135,26 +151,31 @@
 
 <script>
 export default {
-    name: 'MerchantDashboard',
-    data: () => ({
-      items: [
-        { title: 'Fulfilled'},
-        { title: 'Pending' },
-        { title: 'Queued' }
-      ],
-    }),
-    methods: {
-        fulfilledOrders() {
-            console.log("help")
-            this.$store.commit("fulfilledOrdersFilter")
-    },
+  name: 'MerchantDashboard',
+  data: () => ({
+    items: [
+      { title: 'Fulfilled'},
+      { title: 'Pending' },
+      { title: 'Queued' }
+    ],
+  }),
+  methods: {
+    updateStatus(id, newStatus) {
+      console.log("update status reached")
+      newStatus = newStatus.ToLowerCase();
+      this.$store.commit("updateStatus", id, newStatus)
     }
+  }
 }
-
 </script>
 
 <style scoped>
     h3 { 
-        text-align: center;    
+        margin-left: 3vw;
+    }
+    #righty, #righty2, #righty3 {
+      float: right;
+      margin-top: 3%;
+      margin-right: 3%;
     }
 </style>
