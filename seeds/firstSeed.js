@@ -1,7 +1,11 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('products').del()
-    .then(function () {
+  return knex('orders').del()
+  .then(() => {
+    return knex('products').del()
+  }).then(() => {
+    return knex('users').del()
+  }).then(function () {
       // Inserts seed entries
       return knex('products').insert([
         {
@@ -88,7 +92,6 @@ exports.seed = function(knex) {
               return knex('users').select('id')
             })
             .then((userData) => {
-              console.log(userData);
               return knex('orders').insert([
               {
                 userId: userData[0].id,
