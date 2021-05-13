@@ -78,10 +78,6 @@
             </v-list-item-icon>
             <v-list-item-title>Main Menu</v-list-item-title>
           </v-list-item>
-<<<<<<< HEAD
-        </v-list>      
-=======
->>>>>>> 0a1ab20a626e0905ebab47f60f3c7d204bca7248
         <v-list-item link @click="openMerchantDashboard">
           <v-list-item-icon>
             <v-icon
@@ -89,10 +85,7 @@
           </v-list-item-icon>
           <v-list-item-title>Merchant Dashoard</v-list-item-title>
         </v-list-item>
-<<<<<<< HEAD
-=======
         </v-list>      
->>>>>>> 0a1ab20a626e0905ebab47f60f3c7d204bca7248
       </v-navigation-drawer>
     
 
