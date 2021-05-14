@@ -16,26 +16,27 @@
           </v-list-item>
 
           <v-list-item v-if="$auth.isAuthenticated === true">
+          <v-list-item-icon>
+            <v-icon
+              color="grey darken-2">mdi-account
+            </v-icon>
+          </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class='mb-2'>
                 {{ $auth.user.nickname }}
               </v-list-item-title>
               <v-list-item-subtitle class="mb-3">{{ $auth.user.email }}</v-list-item-subtitle>
-              <v-divider></v-divider>
-              <v-btn>
-                <LogoutButton />
-              </v-btn>
-              
             </v-list-item-content>
           </v-list-item>
+          <v-list-item>
+            <v-icon
+              color="grey darken-2">
+            </v-icon>
+            <v-btn block>
+                  <AuthenticationButton />
+            </v-btn>
+          </v-list-item>
         </v-list>
-
-        <v-list-item v-if="$auth.isAuthenticated === false">
-          <v-btn block>
-              <AuthenticationButton />
-          </v-btn>
-         </v-list-item> 
-       
 
         <v-divider></v-divider>
 
@@ -47,7 +48,7 @@
           <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>
               <v-icon
-              color="teal darken-2">mdi-account-circle</v-icon>
+              color="teal darken-2">mdi-account-cog</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Account Info</v-list-item-title>
           </v-list-item>
@@ -113,7 +114,6 @@ import ShoppingCart from './components/ShoppingCart.vue'
 import PurchaseHistory from './components/PurchaseHistory.vue'
 import MerchantDashboard from './components/MerchantDashboard.vue'
 import AuthenticationButton from './components/AuthenticationButton.vue'
-import LogoutButton from './components/LogoutButton.vue'
 
 export default {
   name: 'App',
@@ -124,7 +124,6 @@ export default {
     PurchaseHistory,
     MerchantDashboard,
     AuthenticationButton,
-    LogoutButton
   },
   data: () => ({ 
       drawer: null,
@@ -177,6 +176,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+html {
+  background: #D1913C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFD194, #D1913C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFD194, #D1913C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 </style>
 
 
