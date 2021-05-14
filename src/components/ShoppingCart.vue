@@ -26,7 +26,7 @@
     </v-list-item-content>
     <v-spacer></v-spacer>
     <v-list-item-content>
-        <v-list-item-title class="mb-2">¥{{item.price}}</v-list-item-title>
+        <v-list-item-title class="mb-2">¥{{getActualPrice(item)}}</v-list-item-title>
         <v-list-item-subtitle></v-list-item-subtitle>
     </v-list-item-content>
     </v-list-item>
@@ -72,7 +72,7 @@ export default {
     // CREATE HTTP BODY WITH PRICE_ID,QTY LIST
     const requestBody = { lineItems : [] }
     this.$store.state.shoppingCartList.forEach((element) => {
-            requestBody.lineItems.push({price: element.price_id, quantity: element.quantity});
+            requestBody.lineItems.push({price: this.getActualPriceId(element), quantity: element.quantity});
         });
     // Create the HTTP request BODY with all the items.
     axios.post('/create-checkout-session', requestBody).then((response) => {
@@ -82,6 +82,12 @@ export default {
     })
     
     },
+        getActualPrice(item) {
+            return item.tier === 0 ? item.price : item.price_2;
+        },
+         getActualPriceId(item) {
+            return item.tier === 0 ? item.price_id : item.price_id_2;
+        },
         getTotal(){
             this.$store.state.shoppingCartList.map((element) => {
                 this.total += element.quantity * element.price

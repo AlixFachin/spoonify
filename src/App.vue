@@ -7,9 +7,9 @@
         v-model='drawer'
         app
       >
-        <v-list v-if="$auth.isAuthenticated === true">
+        <v-list>
           <v-list-item class="px-2">
-            <v-list-item-avatar color="grey">
+            <v-list-item-avatar color="grey" v-if="$auth.isAuthenticated === true">
               <v-img color="grey" :src="require(`@/assets/123coolfries.jpg`)"></v-img>
             </v-list-item-avatar>
           </v-list-item>
@@ -30,7 +30,7 @@
         </v-list>
 
         <v-list-item v-if="$auth.isAuthenticated === false">
-          <v-btn>
+          <v-btn block>
               <AuthenticationButton />
           </v-btn>
          </v-list-item> 
@@ -47,7 +47,7 @@
             <v-list-item-icon>
               <v-icon color="yellow darken-2">mdi-basket</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Main Menu</v-list-item-title>
+            <v-list-item-title>Store</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>

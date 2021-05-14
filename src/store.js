@@ -92,6 +92,7 @@ export default new Vuex.Store({
 
     mutations: {
         addToCart(state, payload){
+            console.log(payload.tier)
         let checkExist = state.shoppingCartList.find((item) => item.id === payload.id)
         if(checkExist){
             let cartIndex = state.shoppingCartList.indexOf(checkExist)

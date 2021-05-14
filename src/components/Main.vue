@@ -28,12 +28,20 @@
      <v-icon>{{ item.id === selectedIndex ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     <v-spacer></v-spacer>
-  <v-btn color="blue white--text" small elevation="2" @click="addToCart(item)"> Add to Cart 
+  <v-btn color="blue white--text" small elevation="2" @click="addToCart(item, 0)"> Add to Cart 
       <v-icon
         right
         dark
       >
         mdi-cart
+      </v-icon>
+  </v-btn>
+  <v-btn color="green white--text" small elevation="2" @click="addToCart(item, 1)"> +tip 
+      <v-icon
+        right
+        dark
+      >
+        mdi-hand-heart
       </v-icon>
   </v-btn>
     </v-card-actions>
@@ -50,8 +58,8 @@
 export default {
     name: 'Main',
     methods: {
-        addToCart(item) {
-            this.$store.commit("addToCart", item)
+        addToCart(item, tier) {
+          this.$store.commit("addToCart", {...item, tier: tier} )
         },
         setSelectedIndex(id) {
             if (this.flag === false) {
