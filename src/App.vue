@@ -5,6 +5,7 @@
         permanent
         expand-on-hover
         v-model='drawer'
+
         app
       >
         <v-list>
@@ -43,12 +44,6 @@
           nav
           dense
         >
-         <v-list-item link @click="openMain">
-            <v-list-item-icon>
-              <v-icon color="yellow darken-2">mdi-basket</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Store</v-list-item-title>
-          </v-list-item>
           <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>
               <v-icon
@@ -56,16 +51,21 @@
             </v-list-item-icon>
             <v-list-item-title>Account Info</v-list-item-title>
           </v-list-item>
+        <v-list-item link @click="openMerchantDashboard">
+          <v-list-item-icon>
+            <v-icon
+            color="orange darken-4">mdi-monitor-dashboard</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Merchant Dashoard</v-list-item-title>
+        </v-list-item>
           <v-list-item link @click="openPurchaseHistory">
             <v-list-item-icon>
             <v-icon
               color="red darken-2">mdi-credit-card</v-icon>
             </v-list-item-icon>
-              
             <v-list-item-title>Purchase History</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="openShoppingCart">
-           
             <v-list-item-icon>
         <v-badge
           v-if="this.$store.state.shoppingCartAmt > 0"
@@ -79,13 +79,12 @@
             <v-list-item-title>Shopping Cart</v-list-item-title>
           </v-list-item>
          
-        <v-list-item link @click="openMerchantDashboard">
-          <v-list-item-icon>
-            <v-icon
-            color="orange darken-4">mdi-monitor-dashboard</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Merchant Dashoard</v-list-item-title>
-        </v-list-item>
+         <v-list-item link @click="openMain">
+            <v-list-item-icon>
+              <v-icon color="blue darken-2">mdi-basket</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Store</v-list-item-title>
+          </v-list-item>
         </v-list>      
       </v-navigation-drawer>
     
@@ -153,7 +152,9 @@ export default {
       this.drawer = null;
     },
     setPicture(){
-      this.image = this.$auth.user.picture
+      if (this.$auth.isAuthenticated) {
+        this.image = this.$auth.user.picture
+      }
     }
   },
   mounted(){
