@@ -1,11 +1,10 @@
 <template >
     <div id="merchant-dashboard-container">
       <h1> Merchant Dashboard </h1>
-      <v-card  class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
-      <v-expansion-panels>
-        
-                <v-expansion-panel>
-            <v-expansion-panel-header disable-icon-rotate>
+      <v-card  class="mx-auto mt-1" max-width="98%" elevation="4" rounded >
+      <v-expansion-panels style="background: linear-gradient(to right, #FFD194, #D1913C)">
+          <v-expansion-panel>
+            <v-expansion-panel-header disable-icon-rotate style="background: #824E1A">
             Fulfilled
             <template v-slot:actions>
               <v-icon color="green">
@@ -13,8 +12,8 @@
               </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content >
-              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid" >
+          <v-expansion-panel-content style="background: #824E1A">
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid"  style="background: #824E1A">
                 <div v-if="order.status==='fulfilled'">
                     <h3>{{order.timestamp}}</h3>
                     <v-menu class="update-status-btn" offset-y>
@@ -30,7 +29,7 @@
                                 Update Status
                                 </v-btn>
                             </template>
-                            <v-list>
+                            <v-list style="background: #824E1A">
                                 <v-list-item v-for="(item, index) in items" :key="index">
                                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                                 </v-list-item>
@@ -53,7 +52,7 @@
         </v-expansion-panel>
 
         <v-expansion-panel>
-            <v-expansion-panel-header disable-icon-rotate>
+            <v-expansion-panel-header disable-icon-rotate style="background: #824E1A">
             Pending
             <template v-slot:actions>
               <v-icon color="orange">
@@ -61,11 +60,11 @@
               </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+          <v-expansion-panel-content style="background: #824E1A">
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid" style="background: #824E1A">
                 <div v-if="order.status==='pending'">
                     <h3>{{order.timestamp}}</h3>
-                    <v-menu class="update-status-btn" offset-y>
+                    <v-menu class="update-status-btn" offset-y >
                        <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                 id="righty2"
@@ -78,7 +77,7 @@
                                 Update Status
                                 </v-btn>
                             </template>
-                            <v-list>
+                            <v-list style="background: #824E1A">
                                 <v-list-item v-for="(item, index) in items" :key="index">
                                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                                 </v-list-item>
@@ -101,7 +100,7 @@
         </v-expansion-panel>
   
         <v-expansion-panel>
-            <v-expansion-panel-header disable-icon-rotate>
+            <v-expansion-panel-header disable-icon-rotate style="background: #824E1A">
             Queued
             <template v-slot:actions>
               <v-icon color="red">
@@ -109,8 +108,8 @@
               </v-icon>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid">
+          <v-expansion-panel-content style="background: #824E1A">
+              <v-card v-for="order in this.$store.state.orderList" :key="order.uuid" style="background: #824E1A">
                 <div v-if="order.status==='queued'">
                     <h3>{{order.timestamp}}</h3>
                     <v-menu class="update-status-btn" offset-y>
@@ -126,7 +125,7 @@
                                 Update Status
                                 </v-btn>
                             </template>
-                            <v-list>
+                            <v-list style="background: #824E1A">
                                 <v-list-item v-for="(item, index) in items" :key="index">
                                     <v-list-item-title @click="updateStatus(order.uuid, item.title)">{{ item.title }}</v-list-item-title>
                                 </v-list-item>
@@ -173,13 +172,10 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
-    text-align: center;
-  }
-  h3 { 
+ h3 { 
       margin-left: 3vw;
   }
-  #righty, #righty2, #righty3 {
+#righty, #righty2, #righty3 {
     float: right;
     margin-top: 3%;
     margin-right: 3%;

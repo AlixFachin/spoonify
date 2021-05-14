@@ -1,10 +1,10 @@
 <template>
   <button
-    class="btn btn-danger btn-block"
+    class="btn btn-danger"
     v-if="$auth.isAuthenticated"
     @click.prevent="logout"
   >
-    Log Out
+  Logout
   </button>
 </template>
 

@@ -2,20 +2,20 @@
   <div id="purchase-history-container">
       <h1>Purchase History</h1>
       <v-card v-for="order in this.$store.state.orderList" :key="order.uuid" class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
-        <v-list-item two-line @click="setSelectedIndex(order.uuid)">
-          <v-list-item-content>
+        <v-list-item two-line @click="setSelectedIndex(order.uuid)" style="background: #824E1A">
+          <v-list-item-content >
             <v-list-item-title class="mb-2"> {{order.timestamp}} </v-list-item-title>
             <v-list-item-subtitle>¥{{order.totalPrice}}</v-list-item-subtitle>        
           </v-list-item-content>
         </v-list-item>
-        <v-card-actions>
+        <v-card-actions style="background: #824E1A">
           <v-spacer></v-spacer>
           <v-btn icon @click="setSelectedIndex(order.uuid)">
             <v-icon>{{ order.uuid === selectedIndex ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
           </v-btn>
         </v-card-actions>
         <v-expand-transition>
-          <div v-show="order.uuid === selectedIndex">
+          <div v-show="order.uuid === selectedIndex" style="background: #824E1A">
             <v-card-text>Order ID: {{order.uuid}}</v-card-text>
             <v-card-text>{{order.items[0].product}} x{{order.items[0].quantity}}</v-card-text>
             <v-card-text v-if="(order.items[1])">{{order.items[1].product}} x{{order.items[1].quantity}}</v-card-text>
@@ -59,9 +59,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-  h1 {
-  text-align: center;
-}
-</style>

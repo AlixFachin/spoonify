@@ -37,7 +37,6 @@
      },
      methods: {
        async handleRedirectCallback() {
-           console.log('handleDirect is running...')
          this.isLoading = true;
          try {
            await this.auth0Client.handleRedirectCallback();
@@ -52,7 +51,6 @@
        },
  
        loginWithRedirect(options) {
-           console.log('trying to log in')
          return this.auth0Client.loginWithRedirect(options);
        },
  
@@ -66,8 +64,6 @@
      },
  
      async created() {
-         console.log('we are in created')
-         console.log(pluginOptions.domain, pluginOptions.clientId)
        this.auth0Client = await createAuth0Client({
          ...pluginOptions,
          domain: pluginOptions.domain,
@@ -89,9 +85,7 @@
          this.error = error;
        } finally {
          this.isAuthenticated = await this.auth0Client.isAuthenticated();
-         console.log(this.isAuthenticated)
          this.user = await this.auth0Client.getUser();
-         console.log(this.user)
          this.isLoading = false;
        }
      },

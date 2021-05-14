@@ -1,5 +1,6 @@
 <template>
   <button
+    id="logThing"
     class="btn btn-primary btn-block"
     v-if="!$auth.isAuthenticated"
     @click="login"
@@ -18,3 +19,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

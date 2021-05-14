@@ -2,27 +2,27 @@
 <div id="wrap">
     <h1> Shopping Cart </h1>
     <div v-if="this.$store.state.shoppingCartList.length > 0">
-    <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id"  class="mx-auto mt-1" max-width="98%" elevation="4" rounded>
-    <v-list-item two-line>
-        <v-list-item-avatar
-        class="fill-height"
-        tile
-        left
-        max-height="50"
-        size="20%"
-        >
-        <v-container
-        class="fill-height"
-        fluid
-        style="min-height: 434px">
-        <v-img 
-            :src="require(`@/assets/${item.name}.jpg`)"
-            ></v-img>
-        </v-container>
-        </v-list-item-avatar>
+        <v-card v-for="item in this.$store.state.shoppingCartList" :key="item.id"  class="mx-auto mt-1" max-width="98%" elevation="4" rounded style="background: #824E1A">
+        <v-list-item two-line >
+            <v-list-item-avatar
+            class="fill-height"
+            tile
+            left
+            max-height="50"
+            size="20%"
+            >
+            <v-container
+            class="fill-height"
+            fluid
+            style="min-height: 434px">
+            <v-img 
+                :src="require(`@/assets/${item.name}.jpg`)"
+                ></v-img>
+            </v-container>
+            </v-list-item-avatar>
     <v-list-item-content>
         <v-list-item-title class="mb-2"> {{item.name}} </v-list-item-title>
-        <v-list-item-subtitle>quantity:{{item.quantity}}</v-list-item-subtitle>
+        <v-list-item-subtitle>quantity: {{item.quantity}}</v-list-item-subtitle>
     </v-list-item-content>
     <v-spacer></v-spacer>
     <v-list-item-content>
@@ -31,23 +31,24 @@
     </v-list-item-content>
     </v-list-item>
     </v-card>
-    <v-bottom-navigation>
+    <v-bottom-navigation rounded class="mx-auto mt-3" max-width="98%" elevation="4">
      <StripeCheckout
-     ref="checkoutRef"
+     ref="checkoutRef" 
      :pk="publishableKey"
      :sessionId="sessionId"
       />
-      <v-btn block @click="submit">
-      <span class="ml-2" color="blue white--text">Pay now!</span>
+      <v-btn block rounded @click="submit" style="background: #824E1A" >
+      <span class="ml-2" color="white--text">Pay now!</span>
+         <v-icon>
+         mdi-currency-usd
+         </v-icon>
     </v-btn>
      <v-spacer></v-spacer>
     </v-bottom-navigation>
     </div>
-    <div v-else>
-        <v-card class="p5">
-        <v-card-title> Your shopping cart is empty! </v-card-title>
-        </v-card>
-    </div>
+     <v-card v-else class="mx-auto mt-1" max-width="98%" elevation="4">
+        <v-card-title style="background: #824E1A"> Your shopping cart is empty! </v-card-title>
+    </v-card>
 </div>    
 </template>
 
@@ -120,4 +121,5 @@ export default {
       h1 {
     text-align: center;
   }
+
 </style>
