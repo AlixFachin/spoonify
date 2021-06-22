@@ -92,7 +92,6 @@ export default new Vuex.Store({
 
     mutations: {
         addToCart(state, payload){
-            console.log(payload.tier)
         let checkExist = state.shoppingCartList.find((item) => item.id === payload.id)
         if(checkExist){
             let cartIndex = state.shoppingCartList.indexOf(checkExist)
@@ -113,15 +112,12 @@ export default new Vuex.Store({
         },
         setOrderList(state, fetchedData) {
             state.orderList = fetchedData
-            console.log(state.orderList)
         },
         setUserDetails(state, fetchedData) {
             state.userDetails = fetchedData
-            console.log("User details from fetch", state.userDetails)
         },
         setAllUsers(state, fetchedData) {
             state.allUsers = fetchedData
-            console.log("All Users from fetch", state.allUsers)
         },
         openAccountInfo(state) {
             state.displayPage = 'AccountInfo';
@@ -140,7 +136,6 @@ export default new Vuex.Store({
         },
         updateStatus(state, id, newStatus) {
             for (const order in state.orderList) {
-                console.log(order)
                 if (order.uuid === id) {
                     order.status = newStatus
                 }
@@ -171,7 +166,6 @@ export default new Vuex.Store({
         },
         async fetchUserDetails( state, { commit } ) {
             try {
-                console.log("user ID", state.userID)
                 const fetchedUser = await axios.get(`/api/user/${this.$auth.user.sub}`)
                 commit("setUserDetails", fetchedUser.data)
             } catch (err) {
@@ -179,7 +173,6 @@ export default new Vuex.Store({
             }
         },
         async fetchAllUsers({ commit }) {
-            console.log('inside store function')
             try {
                 const fetchedUsers = await axios.get('/api/usersTest')
                 commit("setAllUsers", fetchedUsers.data)

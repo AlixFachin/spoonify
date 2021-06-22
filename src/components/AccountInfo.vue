@@ -18,14 +18,11 @@ export default {
     },
     mounted() {
         this.$store.dispatch("fetchAllUsers");
-        console.log("inside acc info");
         
         
     },
     computed: {
         getOneUser() {
-            console.log("Computed has run")
-            console.log("I am all users", this.$store.state.allUsers[0])
             return this.$store.state.allUsers[0];
         }
         

@@ -76,7 +76,6 @@ export default {
         });
     // Create the HTTP request BODY with all the items.
     axios.post('/create-checkout-session', requestBody).then((response) => {
-        console.log(JSON.stringify(response.data));
         this.sessionId = response.data.id;
         this.$refs.checkoutRef.redirectToCheckout();
     })
@@ -110,7 +109,6 @@ export default {
     mounted() {
         this.getTotal()
         this.createLineItem()
-        console.log(process.env.DB_NAME)
     }
 } 
 </script>

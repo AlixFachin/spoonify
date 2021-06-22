@@ -84,7 +84,6 @@ export default {
       images: []
     }),
     mounted(){
-        console.log('getting item list...')
         this.$store.dispatch("fetchItemList");
         // this.getImages();
     },

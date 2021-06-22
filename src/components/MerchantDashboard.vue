@@ -164,7 +164,6 @@ export default {
   }),
   methods: {
     updateStatus(id, newStatus) {
-      console.log("update status reached")
       newStatus = newStatus.ToLowerCase();
       this.$store.commit("updateStatus", id, newStatus)
     }
