@@ -175,7 +175,7 @@ app.patch('/api/order/:id'), (request, responseHandler) => {
   db('orders').update({
     status: newStatus,
     thisKeyIsSkipped: undefined
-  }).then((dbData) => {
+  }).then(() => {
     responseHandler.status(200).end();
   });
 }

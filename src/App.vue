@@ -1,14 +1,17 @@
  
 <template>
-<v-app id="spoonify">
+<v-app id="spoonify" style="background: linear-gradient(to right, #FFD194, #D1913C)">
      <v-navigation-drawer
         permanent
         expand-on-hover
         v-model='drawer'
 
         app
+
+        style="background: #542A00"
+        
       >
-        <v-list>
+        <v-list style="color=white">
           <v-list-item class="px-2">
             <v-list-item-avatar color="grey" v-if="$auth.isAuthenticated === true">
               <v-img color="grey" :src="require(`@/assets/123coolfries.jpg`)"></v-img>
@@ -16,26 +19,29 @@
           </v-list-item>
 
           <v-list-item v-if="$auth.isAuthenticated === true">
+          <v-list-item-icon>
+            <v-icon
+              color="grey">mdi-account
+            </v-icon>
+          </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class='mb-2'>
                 {{ $auth.user.nickname }}
               </v-list-item-title>
               <v-list-item-subtitle class="mb-3">{{ $auth.user.email }}</v-list-item-subtitle>
-              <v-divider></v-divider>
-              <v-btn>
-                <LogoutButton />
+            <v-divider></v-divider>
+              <v-btn block style="background: #824E1A">
+                <AuthenticationButton block />
               </v-btn>
-              
             </v-list-item-content>
           </v-list-item>
-        </v-list>
 
-        <v-list-item v-if="$auth.isAuthenticated === false">
-          <v-btn block>
-              <AuthenticationButton />
+          <v-list-item v-if="$auth.isAuthenticated === false" style="background: #542A00"  class="text--white">
+          <v-btn block style="background: #824E1A">
+              <AuthenticationButton block />
           </v-btn>
          </v-list-item> 
-       
+        </v-list>
 
         <v-divider></v-divider>
 
@@ -47,21 +53,21 @@
           <v-list-item link @click="openAccountInfo">
             <v-list-item-icon>
               <v-icon
-              color="teal darken-2">mdi-account-circle</v-icon>
+              color="teal">mdi-account-cog</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Account Info</v-list-item-title>
           </v-list-item>
         <v-list-item link @click="openMerchantDashboard">
           <v-list-item-icon>
             <v-icon
-            color="orange darken-4">mdi-monitor-dashboard</v-icon>
+            color="orange">mdi-monitor-dashboard</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Merchant Dashoard</v-list-item-title>
         </v-list-item>
           <v-list-item link @click="openPurchaseHistory">
             <v-list-item-icon>
             <v-icon
-              color="red darken-2">mdi-credit-card</v-icon>
+              color="red lighten-2">mdi-credit-card</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Purchase History</v-list-item-title>
           </v-list-item>
@@ -69,11 +75,11 @@
             <v-list-item-icon>
         <v-badge
           v-if="this.$store.state.shoppingCartAmt > 0"
-          color="red darken-2"
+          color="red"
           overlap
           :content="this.$store.state.shoppingCartAmt">
         </v-badge>
-              <v-icon color="purple darken-2">
+              <v-icon color="purple lighten-2">
                mdi-cart</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Shopping Cart</v-list-item-title>
@@ -81,7 +87,7 @@
          
          <v-list-item link @click="openMain">
             <v-list-item-icon>
-              <v-icon color="blue darken-2">mdi-basket</v-icon>
+              <v-icon color="blue lighten-2">mdi-basket</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Store</v-list-item-title>
           </v-list-item>
@@ -89,9 +95,9 @@
       </v-navigation-drawer>
     
 
-    <v-app-bar class="lightgrey" app>
+    <v-app-bar style="background: #542A00" app>
       <!-- <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon> -->
-      <v-toolbar-title class="font-weight-black" center>Spoonify</v-toolbar-title>
+      <v-toolbar-title class="font-weight-black "  center>Spoonify</v-toolbar-title>
     </v-app-bar>
     <v-main>
       <Login v-if="this.$store.state.displayPage === 'Login'"/>
@@ -113,7 +119,7 @@ import ShoppingCart from './components/ShoppingCart.vue'
 import PurchaseHistory from './components/PurchaseHistory.vue'
 import MerchantDashboard from './components/MerchantDashboard.vue'
 import AuthenticationButton from './components/AuthenticationButton.vue'
-import LogoutButton from './components/LogoutButton.vue'
+
 
 export default {
   name: 'App',
@@ -124,7 +130,6 @@ export default {
     PurchaseHistory,
     MerchantDashboard,
     AuthenticationButton,
-    LogoutButton
   },
   data: () => ({ 
       drawer: null,
@@ -177,6 +182,17 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+#spoonify *:not(h1) {
+  color: white;
+}
+    
+h1 {
+  text-align: center;
+  color: #542A00;
+}
+
 </style>
 
 
