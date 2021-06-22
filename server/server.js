@@ -26,7 +26,6 @@ app.get('/api/products', (request, responseHandler) => {
   });
 });
 
-// TO REMOVE FOR PRODUCTION
 app.get('/api/usersTest', (request, responseHandler) => {
   db('users').select('*').then((dbData) => {
     responseHandler.status(200).send(dbData);
@@ -37,6 +36,7 @@ app.get('/api/usersTest', (request, responseHandler) => {
 });
 
 // Stripe-related endpoint ---------------------------------------
+
 app.post('/create-checkout-session', async( req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -45,9 +45,7 @@ app.post('/create-checkout-session', async( req, res) => {
     success_url: process.env.SUCCESS_URL || 'http://localhost:8080',
     cancel_url: process.env.CANCEL_URL || 'http://localhost:8080'
   });
-  // TO DO : Register the sessionId for future callbacks.
   res.json({ id: session.id});
-
 });
 
 // Database Endpoints --------------------------------------------
@@ -62,7 +60,7 @@ app.get('/api/product/:id', (request, responseHandler) => {
   }).catch((error) => {
     console.error(error);
     responseHandler.status(500).send(`Server error ${error}`);
-  })
+  });
 });
 
 app.get('/api/user/:id', (request, responseHandler) => {
@@ -130,11 +128,9 @@ app.post('/api/user', (request, responseHandler) => {
           responseHandler.status(500).send(`Server error ${error}`);
     });
   }
-  
 });
 
 app.post('/api/order', (request, responseHandler) => {
-  
   if (request.body.userId === "") {
     responseHandler.status(400).send("User ID required");
   } else if (request.body.items === "") {
@@ -182,4 +178,4 @@ app.patch('/api/order/:id'), (request, responseHandler) => {
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`Server listening on port ${process.env.PORT || 4000}`);
-})
+});

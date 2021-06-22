@@ -32,18 +32,18 @@
     </v-list-item>
     </v-card>
     <v-bottom-navigation rounded class="mx-auto mt-3" max-width="98%" elevation="4">
-     <StripeCheckout
-     ref="checkoutRef" 
-     :pk="publishableKey"
-     :sessionId="sessionId"
-      />
-      <v-btn block rounded @click="submit" style="background: #824E1A" >
-      <span class="ml-2" color="white--text">Pay now!</span>
-         <v-icon>
-         mdi-currency-usd
-         </v-icon>
+    <StripeCheckout
+    ref="checkoutRef" 
+    :pk="publishableKey"
+    :sessionId="sessionId"
+    />
+    <v-btn block rounded @click="submit" style="background: #824E1A" >
+    <span class="ml-2" color="white--text">Pay now!</span>
+        <v-icon>
+        mdi-currency-usd
+        </v-icon>
     </v-btn>
-     <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
     </v-bottom-navigation>
     </div>
      <v-card v-else class="mx-auto mt-1" max-width="98%" elevation="4">
@@ -62,25 +62,20 @@ dotenv.config();
 
 
 export default {
-    
     name: 'ShoppingCart',
     components: {
         StripeCheckout
     },
     methods: {
         submit () {
-    // this.items = this.$store.state.shoppingCartList
-    // CREATE HTTP BODY WITH PRICE_ID,QTY LIST
     const requestBody = { lineItems : [] }
     this.$store.state.shoppingCartList.forEach((element) => {
             requestBody.lineItems.push({price: this.getActualPriceId(element), quantity: element.quantity});
         });
-    // Create the HTTP request BODY with all the items.
     axios.post('/create-checkout-session', requestBody).then((response) => {
         this.sessionId = response.data.id;
         this.$refs.checkoutRef.redirectToCheckout();
-    })
-    
+    });    
     },
         getActualPrice(item) {
             return item.tier === 0 ? item.price : item.price_2;
@@ -116,8 +111,7 @@ export default {
 
 
 <style>
-      h1 {
+h1 {
     text-align: center;
-  }
-
+}
 </style>

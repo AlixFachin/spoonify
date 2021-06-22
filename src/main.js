@@ -3,13 +3,9 @@ import App from './App.vue'
 import store from "./store"
 import vuetify from './plugins/vuetify'
 import router from 'vue-router'
-
 import { domain, clientId, audience } from "../auth_config.json";
 import { Auth0Plugin } from "@/auth/auth0-plugin";
 
-
-
-// Install the authentication plugin
 Vue.use(Auth0Plugin, {
   domain,
   clientId,

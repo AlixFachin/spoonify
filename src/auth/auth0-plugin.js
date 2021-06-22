@@ -48,11 +48,11 @@
            this.isLoading = false;
          }
        },
- 
+
        loginWithRedirect(options) {
          return this.auth0Client.loginWithRedirect(options);
        },
- 
+       
        logout(options) {
          return this.auth0Client.logout(options);
        },

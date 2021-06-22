@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from 'axios'
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -86,24 +86,20 @@ export default new Vuex.Store({
         userDetails: [],
         allUsers: [],
         shoppingCartAmt: 0,
-        // grabAvatar: null,
-        // allAvatars: []
     }, 
-
     mutations: {
-        addToCart(state, payload){
+        addToCart(state, payload) {
         let checkExist = state.shoppingCartList.find((item) => item.id === payload.id)
-        if(checkExist){
-            let cartIndex = state.shoppingCartList.indexOf(checkExist)
-            state.shoppingCartList[cartIndex].quantity += 1
-            state.shoppingCartAmt += 1
-        } else {
-            payload.quantity = 1
-            state.shoppingCartList.push(payload)
-            state.shoppingCartAmt += 1
-        }
+            if(checkExist){
+                let cartIndex = state.shoppingCartList.indexOf(checkExist)
+                state.shoppingCartList[cartIndex].quantity += 1
+                state.shoppingCartAmt += 1
+            } else {
+                payload.quantity = 1
+                state.shoppingCartList.push(payload)
+                state.shoppingCartAmt += 1
+            }
         },
-
         clearCart(state) {
             state.shoppingCartList = []
         },
@@ -140,13 +136,8 @@ export default new Vuex.Store({
                     order.status = newStatus
                 }
             }
-        }
-        // randomAvatar(state, allAvatars) {
-        //     let randomIndex = Math.floor(Math.random() * state.allAvatars.length)
-        //     state.grabAvatar = state.allAvatars[randomIndex]
-        // }
+        },
     },
-
     actions: {
         async fetchItemList( {commit} ){
             try {
@@ -180,5 +171,5 @@ export default new Vuex.Store({
                 console.log('Failed fetching all users', err)
             }
         }
-    }
-})
+    },
+});

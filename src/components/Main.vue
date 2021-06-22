@@ -89,11 +89,11 @@ export default {
     
 }
 </script>
+
 <style scoped>
 #scroll-up {
     background: url("../assets/up-arrow.png");
 }
-
 </style>
 
 
